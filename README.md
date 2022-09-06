@@ -34,16 +34,16 @@ To check if the installation works in your browser, please navigate to the [test
 ## Notes for development
 
 * Regexes:
-** temperature in [ecma](https://regex101.com/r/Wrpp4x/2) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
-** inches https://regex101.com/r/Cjhgl4/5
-** feet https://regex101.com/r/xVnj9A/3
-** miles https://regex101.com/r/qAti0n/2
-** mph https://regex101.com/r/8AvYcc/1
+    - temperature in [ecma](https://regex101.com/r/Wrpp4x/2) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
+    - inches https://regex101.com/r/Cjhgl4/5
+    - feet https://regex101.com/r/xVnj9A/3
+    - miles https://regex101.com/r/qAti0n/2
+    - mph https://regex101.com/r/8AvYcc/1
 * for converting regexes from pcre 🧠 => ecma:
 	`npm install regex-translator; npx regex-translator -o -T ecma -F pcre -R "(° ?)?\d+(\.\d+)?+°?+ ?[fF]"`
 * more units up for convertion at
-** [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
-** [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
+    - [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
+    - [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
 
 ## Fun facts
 
