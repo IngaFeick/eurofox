@@ -13,7 +13,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["TODO jquery","euro.js"]
+      "js": ["jquery-3.6.1.slim.min.js","euro.js"]
     }
   ]
 
