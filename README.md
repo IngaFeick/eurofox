@@ -15,12 +15,14 @@ To check if the installation works in your browser, please navigate to the [test
 * Sizes (inch, foot, yard, miles)
 * Areas (acres)
 * Speeds (mph, knots)
+* Liquids (barrel, gallon)
 
 ## TODOs
 
 * BUG: javascript exclusion test failed
-* convert barrels
-* convert units for cooking
+* BUG: fractions like `1/2 in` are incorrectly converted to `1/5 cm`; TODO translate some most common fractions into decimal syntax.
+* BUG: cases like `1 1/2 in. x 5 1/2 in` where there is whitespace between the mantissa and the decimal point (or lack thereof) are not recognized yet. As a consequence the span titles are messed up: `<span title="<span title=" 2="" in"="">5 cm</span>` (test case: https://thediyplan.com/symbol-of-feet-and-inches/ search for "For example, a 2 x 6 is actually")
+* convert units for cooking (pint, cup, quart, various spoons and ounces)
 * remove console output
 * maybe replace jquery with pure js
 * write unit tests
