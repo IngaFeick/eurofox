@@ -1,6 +1,6 @@
 /* Original code lives at https://github.com/spb/tc */
 
-var regex_temperature = /°?(\d+(?:\.\d+)?+°?+\s?[fF])/g
+var regex_temperature = /(°\s?)?(\d+(?:\.\d+)?+°?+\s?[fF])/g
 
 function clean_temperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','')
@@ -20,7 +20,7 @@ $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
     var textNode = $(this)
     var text = textNode.text()
     if (text.match(regex_temperature)) {
-        var celsius = to_celsius($1)
+        var celsius = to_celsius($2)
         textNode.replaceWith(text.replace(regex_temperature, '<span title="$1">'.celsius.'</span>'))
     }
 })
