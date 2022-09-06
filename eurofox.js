@@ -1,6 +1,6 @@
 /* Original code lives at https://github.com/spb/tc */
 
-var regex_temperature = /(°\s?)?(\d+(?:\.\d+)?+°?+\s?[fF])/g
+var regex_temperature = /(° ?)?[0-9]+(\.[0-9]+)?°? ?[fF]/g
 
 function clean_temperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','')
