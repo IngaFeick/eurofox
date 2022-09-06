@@ -20,7 +20,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 * BUG: multiple matches in same tag are not replaced correctly (see test case for yards).
 * BUG: temperature test with yellow css is broken
-* add " to regex for inches
+* BUG: mph does not get replaced in all instances
 * convert barrels
 * convert units for cooking
 * remove console output
