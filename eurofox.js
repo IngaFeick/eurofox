@@ -14,8 +14,12 @@ function cleanTemperature(input){
 }
 
 function cleanInput(input, removables){
-    removables.forEach((rep, i) => { input = input.replace(rep, '')});
-    return input.replace(' ','');
+    console.log("Input: " + input + " of type " + (typeof input));
+    console.log(input);
+    removables.forEach((rep, i) => { console.log("Hello " + rep); console.log("Hello " + input);});
+    // } input.replace(rep, '')
+    console.log("Output: " + input);
+    return input;
 }
 
 function cleanInch(input){
@@ -67,7 +71,7 @@ function feet2Meters(input) {
 function yard2Meters(input) {
     var f = parseFloat(cleanYard(input), 10);
     var result = f * 0.9144;
-    console.log(input + " => " + f + " => " + result);
+    console.log("yard2Meters " + input + " => " + f + " => " + result);
     return Math.round(result) + " m";
 }
 
@@ -100,6 +104,7 @@ function textNodeFilter() {
 }
 
 function makeNewText(original, replacement){
+    console.log("Making new text for " + original + " => " + replacement);
     return '<span title="' + original + '">' + replacement + '</span>';
 }
 
@@ -108,13 +113,11 @@ function subst(text, needle, replacement){
     return text.replaceAll(needle, replacement);
 }
 
-console.log("Hemlo world");
 
 $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
     let textNode = $(this);
     let nodeParent = textNode.parent()[0].localName;
     let text = textNode.text();
-    console.log("Node " + nodeParent + " with text '" + text);
 
     /*
     matches = text.match(regex_yard);
@@ -124,10 +127,14 @@ $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
         textNode.replaceWith(subst(text, regex_yard, makeNewText(matches[0], yard2Meters(matches[0]))))
     }*/
     for (const match of text.matchAll(regex_yard)){
-      console.log(`Found ${match}.`);
-      text = text.replaceAll(match, makeNewText(match, yard2Meters(match));
+      console.log(`Found match:`);
+      console.log(match);
+      console.log("Before: " + text);
+      text = text.replaceAll(match[0], makeNewText(match[0], yard2Meters(match[0])));
+      console.log("After: " + text);
       // text = subst(text, regex_yard, makeNewText(match[0], yard2Meters(match[0])))
     }
+    // console.log("New text: " + text);
     textNode.replaceWith(text);
     /*
     matches = text.match(regex_temperature);

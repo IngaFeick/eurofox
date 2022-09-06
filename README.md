@@ -18,6 +18,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
+* Make logo
 * BUG: multiple matches in same tag are not replaced correctly (see test case for yards).
 * BUG: temperature test with yellow css is broken
 * BUG: mph does not get replaced in all instances
