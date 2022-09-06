@@ -18,8 +18,6 @@ function textNodeFilter() {
     return this.nodeType == 3
 }
 
-alert("Hello world");
-
 $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
     var textNode = $(this);
     var text = textNode.text();
