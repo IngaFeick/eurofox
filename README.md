@@ -8,13 +8,18 @@ To check if the installation works in your browser, navigate to the [test page](
 
 ## TODOs
 
-* convert mph
-* convert inch, feet, barrels
+* convert mph and miles
+* convert inch, foot, yard, mile
+* barrels
+* units for cooking
 * remove console output
 * support for floats
 * maybe replace jquery with pure js
 * publish
 * test if this works on pages where content is added after initial dom is created
+* more units up for convertion at
+** [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
+** [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
 
 ## Notes for development
 
