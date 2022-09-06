@@ -14,11 +14,8 @@ function cleanTemperature(input){
 }
 
 function cleanInput(input, removables){
-    console.log("Input: " + input + " of type " + (typeof input));
-    console.log(input);
-    removables.forEach((rep, i) => { console.log("Hello " + rep); console.log("Hello " + input);});
-    // } input.replace(rep, '')
-    console.log("Output: " + input);
+    removables.forEach((rep, i) => { input.replace(rep, '')});
+    input.replace(' ','');
     return input;
 }
 
@@ -109,7 +106,6 @@ function makeNewText(original, replacement){
 }
 
 function subst(text, needle, replacement){
-    // return text.replace(regex_mph, makeNewText(matches[0], mph2kmh(matches[0])))
     return text.replaceAll(needle, replacement);
 }
 
@@ -119,51 +115,37 @@ $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
     let nodeParent = textNode.parent()[0].localName;
     let text = textNode.text();
 
-    /*
-    matches = text.match(regex_yard);
-    if (matches) {
-        console.log("Node " + nodeParent + " with text '" + text);
-        console.log("yard matches: " + matches);
-        textNode.replaceWith(subst(text, regex_yard, makeNewText(matches[0], yard2Meters(matches[0]))))
-    }*/
     for (const match of text.matchAll(regex_yard)){
-      console.log(`Found match:`);
-      console.log(match);
-      console.log("Before: " + text);
       text = text.replaceAll(match[0], makeNewText(match[0], yard2Meters(match[0])));
-      console.log("After: " + text);
-      // text = subst(text, regex_yard, makeNewText(match[0], yard2Meters(match[0])))
     }
-    // console.log("New text: " + text);
+
+    for (const match of text.matchAll(regex_temperature)){
+      text = text.replaceAll(match[0], makeNewText(match[0], fahrenheit2Celsius(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_inch)){
+      text = text.replaceAll(match[0], makeNewText(match[0], inch2Centimeters(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_miles)){
+      text = text.replaceAll(match[0], makeNewText(match[0], miles2Km(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_feet)){
+      text = text.replaceAll(match[0], makeNewText(match[0], feet2Meters(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_mph)){
+      text = text.replaceAll(match[0], makeNewText(match[0], mph2kmh(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_knots)){
+      text = text.replaceAll(match[0], makeNewText(match[0], knots2kmh(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_acres)){
+      text = text.replaceAll(match[0], makeNewText(match[0], acres2sqm(match[0])));
+    }
+
     textNode.replaceWith(text);
-    /*
-    matches = text.match(regex_temperature);
-    if (matches) {
-        textNode.replaceWith(subst(text, regex_temperature, makeNewText(matches[0], fahrenheit2Celsius(matches[0]))))
-    }
-    matches = text.match(regex_inch);
-    if (matches) {
-        textNode.replaceWith(subst(text, regex_inch, makeNewText(matches[0], inch2Centimeters(matches[0]))))
-    }
-    matches = text.match(regex_miles);
-    if (matches) {
-        textNode.replaceWith(subst(text, regex_miles, makeNewText(matches[0], miles2Km(matches[0]))))
-    }
-    matches = text.match(regex_feet);
-    if (matches) {
-        textNode.replaceWith(subst(text, regex_feet, makeNewText(matches[0], feet2Meters(matches[0]))))
-    }
-    matches = text.match(regex_mph);
-    if (matches) {
-        textNode.replaceWith(subst(text, regex_mph, makeNewText(matches[0], mph2kmh(matches[0]))))
-    }
-    matches = text.match(regex_knots);
-    if (matches) {
-        textNode.replaceWith(subst(text, regex_knots, makeNewText(matches[0], knots2kmh(matches[0]))))
-    }
-    matches = text.match(regex_acres);
-    if (matches) {
-        textNode.replaceWith(subst(text, regex_acres, makeNewText(matches[0], acres2sqm(matches[0]))))
-    }
-    */
 });
