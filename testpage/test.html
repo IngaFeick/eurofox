@@ -1,0 +1,22 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body><h1>This header contains a temperature of ° 89 F </h1>
+<span>This span has a chilly temperature of 23 ° F</span>
+<div>It's 98°f</div>
+<div>Today we are looking at 80 °f and <br>tomorrow it will be 81°f and then it will cool down.</div>
+<table border="1"><tbody>
+<th colspan="2" style="text-align:center;padding-left:0">Quick Climate Info</th></tr>
+<tr><td style="padding-left:0">Hottest Month</td><td>July (65 °F avg)</td></tr>
+<tr><td style="padding-left:0">Coldest Month</td><td>January (27 °F avg)</td></tr>
+<tr><td style="padding-left:0">Wettest Month</td><td>August (3.97" avg)</td></tr>
+<tr><td style="padding-left:0">Windiest Month</td><td>May (7 mph avg)</td></tr>
+</tbody></table>
+<div id="0F0F0F">If you see this comment then the Javascript test is broken.</div>
+<script>
+document.getElementById("0F0F0F").innerHTML = "This is a test comment to make sure that the plugin does not modify script tags.";
+</script>
+<span style="background-color:red"><div style="background-color:#0FFF0F">If this div is not green, then the plugin has failed to exclude css. Also this temperature of 89°F should be in Celsius.</div></span>
+</body>
+</html>
