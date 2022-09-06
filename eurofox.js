@@ -7,8 +7,8 @@ function clean_temperature(input){
 }
 
 function to_celsius(input) {
-    var f = parseInt(clean_temperature(input), 10)
-    c = Math.floor((f - 32) / 1.8)
+    var f = parseInt(clean_temperature(input), 10); // TODO convert to float
+    c = Math.floor((f - 32) / 1.8);
     return "°" + c + "C"
 }
 
@@ -17,11 +17,13 @@ function textNodeFilter() {
 }
 
 $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
-    var textNode = $(this)
-    var text = textNode.text()
-    if (text.match(regex_temperature)) {
-        var celsius = to_celsius($2)
-        textNode.replaceWith(text.replace(regex_temperature, '<span title="$1">'.celsius.'</span>'))
+    var textNode = $(this);
+    var text = textNode.text();
+    matches = text.match(regex_temperature);
+    if (matches) {
+        var original = matches[0];
+        var celsius = to_celsius(matches[0]);
+        textNode.replaceWith(text.replace(regex_temperature, '<span title="' + original + '">' + celsius + '</span>'))
     }
 })
 
