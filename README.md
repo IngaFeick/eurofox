@@ -15,3 +15,7 @@ To check if the installation works in your browser, navigate to the [test page](
 * exclude css / style nodes
 * exclude script nodes
 * remove console output
+
+## Links
+
+* [Regex101 for the temperature](https://regex101.com/r/Wrpp4x/1)
