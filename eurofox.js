@@ -1,15 +1,17 @@
 "use strict";
 
 const regex_temperature = /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g;
-const regex_inch = /[0-9]+(?:\.[0-9]+)? ?(?:in(?:ch)?\b|")/g;
+const regex_inch = /[0-9]+(?:\.[0-9]+)? ?(?:in(?:ch|s)?\b|")/g;
 const regex_feet = /[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
 const regex_yard = /[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
 const regex_miles = /[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
 const regex_mph = /[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
 const regex_knots = /[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
 const regex_acres = /[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
+const regex_barrel = /[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
+const regex_gallons = /[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
-const ignoredNodeTypes = ['style'];
+const ignoredNodeTypes = ['style','dummyTagForHappyArray'];
 
 function cleanTemperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','');
@@ -48,6 +50,14 @@ function cleanKnots(input){
 
 function cleanAcres(input){
   return cleanInput(input, ['acres','acre','ac']);
+}
+
+function cleanBarrels(input){
+  return cleanInput(input, ['barrels','barrel','bbl']);
+}
+
+function cleanGallon(input){
+  return cleanInput(input, ['gallons','gallon','gal']);
 }
 
 function fahrenheit2Celsius(input) {
@@ -97,6 +107,18 @@ function acres2sqm(input) {
     return Math.round(result) + " m²";
 }
 
+function barrel2litres(input) {
+    var f = parseFloat(cleanBarrels(input));
+    var result = Math.round(f * 158.987);
+    return result == 1 ? result + " litre" : result + " litres";
+}
+
+function gallon2litres(input) {
+    var f = parseFloat(cleanGallon(input));
+    var result = Math.round(f * 3.785);
+    return result == 1 ? result + " litre" : result + " litres";
+}
+
 function nodeFilter() {
     var b = this.nodeType == 3 && this.nodeName != 'SCRIPT' && this.nodeName != 'STYLE';
     // console.log("New node " + this + " of type " + this.nodeType + " and name " + this.nodeName + " => " + b);
@@ -112,7 +134,7 @@ $("body").find("*").contents().filter(nodeFilter).each(function() {
     let textNode = $(this);
 
     let nodeParentType = textNode.parent()[0].localName;
-    if(ignoredNodeTypes.include(nodeParentType) )
+    if(ignoredNodeTypes.includes(nodeParentType) )
     {
         // console.log("Skipped over node type: " + nodeParentType);
         return;
@@ -149,6 +171,14 @@ $("body").find("*").contents().filter(nodeFilter).each(function() {
 
     for (const match of text.matchAll(regex_acres)){
       text = text.replaceAll(match[0], makeNewText(match[0], acres2sqm(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_barrel)){
+      text = text.replaceAll(match[0], makeNewText(match[0], barrel2litres(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_gallons)){
+      text = text.replaceAll(match[0], makeNewText(match[0], gallon2litres(match[0])));
     }
 
     textNode.replaceWith(text);
