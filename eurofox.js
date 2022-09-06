@@ -11,7 +11,7 @@ const regex_acres = /[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
 const regex_barrel = /[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
 const regex_gallons = /[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
-const ignoredNodeTypes = ['style','dummyTagForHappyArray'];
+const ignoredNodeTypes = ['style'];
 
 function cleanTemperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','');
@@ -130,13 +130,13 @@ function makeNewText(original, replacement){
 }
 
 
+
 $("body").find("*").contents().filter(nodeFilter).each(function() {
     let textNode = $(this);
 
     let nodeParentType = textNode.parent()[0].localName;
     if(ignoredNodeTypes.includes(nodeParentType) )
     {
-        // console.log("Skipped over node type: " + nodeParentType);
         return;
     }
     let text = textNode.text();

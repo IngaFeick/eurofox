@@ -8,7 +8,7 @@
 <p>Below you'll find some tests to make sure that attributes of script and style tags or other css doesn't get modified by the plugin.</p>
 <div id="0F0F0F" style="background-color:red;">If you see this comment then the Javascript test is broken.</div>
 <script>
-document.getElementById("0F0F0F").innerHTML = "This is a test comment to make sure that the plugin does not modify script tags. If this comment is blue, then everything is fine.";
+document.getElementById("0F0F0F").innerHTML = "This comment should be light blue. If it's not then the exclusion of script tags is broken, or you have javascript disabled.";
 document.getElementById("0F0F0F").style = "background-color:lightblue";
 </script>
 <span style="background-color:red"><div style="background-color:#0FFF0F">If this div is not green, then the plugin has failed to exclude css. Also this temperature of 89°F should be in Celsius.</div></span>
