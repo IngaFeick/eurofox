@@ -95,16 +95,17 @@ The slowest train in the world (3mph) climbs the large hill steadily. While desc
 10 gallons, 2 gal, 1 gallon, 3gal, 100gal, 200gallons.
 90 barrels, 1 barrel, 0 bbl, 40bbl.
 Finally 0.2642 gallon which is exactly one litre.
-
+<h2>DOM manipulation check </h2>
 <script language="javascript">
 setTimeout(() => {
-  console.log("Delayed for 1 second.");
+	var surpriseUpdateDiv = document.createElement('div');
+	surpriseUpdateDiv.innerHTML = "If you see this text and this temperature (90°F) in celsius then it means that the mutation observer test has worked.";
+	document.body.appendChild(surpriseUpdateDiv);
+	console.log("DOM manipulated.");
 }, "1000");
 /*
 
-	var surpriseUpdateDiv = document.createElement('div');
-	surpriseUpdateDiv.innerHTML = "If you see this text and this temperature (90°F) in celsius then it means that the mutation observer test has worked ";
-	document.body.appendChild(surpriseUpdateDiv);
+
 
 */
 </script>
