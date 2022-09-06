@@ -19,7 +19,6 @@ To check if the installation works in your browser, please navigate to the [test
 ## TODOs
 
 * BUG: javascript exclusion test failed
-* BUG: temperature test with yellow css is broken
 * convert barrels
 * convert units for cooking
 * remove console output
