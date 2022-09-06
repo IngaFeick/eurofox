@@ -1,5 +1,7 @@
 /* Original code lives at https://github.com/spb/tc */
 
+// TODO replace size units as well
+
 var regex_temperature = /(° ?)?[0-9]+(\.[0-9]+)?°? ?[fF]/g
 
 function clean_temperature(input){
@@ -15,6 +17,8 @@ function to_celsius(input) {
 function textNodeFilter() {
     return this.nodeType == 3
 }
+
+alert("Hello world");
 
 $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
     var textNode = $(this);
