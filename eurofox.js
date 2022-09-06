@@ -14,7 +14,7 @@ function cleanTemperature(input){
 }
 
 function cleanInput(input, removables){
-    removables.forEach((rep, i) => { input.replace(rep, '')});
+    removables.forEach((rep) => { input.replace(rep, '')});
     input.replace(' ','');
     return input;
 }
@@ -105,14 +105,10 @@ function makeNewText(original, replacement){
     return '<span title="' + original + '">' + replacement + '</span>';
 }
 
-function subst(text, needle, replacement){
-    return text.replaceAll(needle, replacement);
-}
 
-
-$("body").find("*").contents().filter(textNodeFilter).each(function(index) {
+$("body").find("*").contents().filter(textNodeFilter).each(function() {
     let textNode = $(this);
-    let nodeParent = textNode.parent()[0].localName;
+    // let nodeParent = textNode.parent()[0].localName;
     let text = textNode.text();
 
     for (const match of text.matchAll(regex_yard)){

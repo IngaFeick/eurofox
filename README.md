@@ -25,6 +25,7 @@ To check if the installation works in your browser, please navigate to the [test
 * convert units for cooking
 * remove console output
 * maybe replace jquery with pure js
+* write unit tests
 * publish
 * test if this works on pages where content is added after initial dom is created
 
