@@ -9,6 +9,8 @@ const regex_mph = /[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
 const regex_knots = /[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
 const regex_acres = /[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
 
+const ignoredNodeTypes = ['style'];
+
 function cleanTemperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','');
 }
@@ -49,66 +51,72 @@ function cleanAcres(input){
 }
 
 function fahrenheit2Celsius(input) {
-    var f = parseFloat(cleanTemperature(input), 10);
+    var f = parseFloat(cleanTemperature(input));
     var result = Math.round((f - 32) / 1.8);
     return result + "° C";
 }
 
 function inch2Centimeters(input) {
-    var f = parseFloat(cleanInch(input), 10);
+    var f = parseFloat(cleanInch(input));
     return Math.round(f * 2.54) + " cm";
 }
 
 function feet2Meters(input) {
-    var f = parseFloat(cleanFeet(input), 10);
+    var f = parseFloat(cleanFeet(input));
     var result = f * 0.3048;
     return Math.round(result) + " m";
 }
 
 function yard2Meters(input) {
-    var f = parseFloat(cleanYard(input), 10);
+    var f = parseFloat(cleanYard(input));
     var result = f * 0.9144;
-    console.log("yard2Meters " + input + " => " + f + " => " + result);
     return Math.round(result) + " m";
 }
 
 function miles2Km(input) {
-    var f = parseFloat(cleanMiles(input), 10);
+    var f = parseFloat(cleanMiles(input));
     var result = f * 1.609344;
     return Math.round(result) + " km";
 }
 
 function mph2kmh(input) {
-    var f = parseFloat(cleanMph(input), 10);
+    var f = parseFloat(cleanMph(input));
     var result = f * 1.609344;
     return Math.round(result) + " km/h";
 }
 
 function knots2kmh(input) {
-    var f = parseFloat(cleanKnots(input), 10);
+    var f = parseFloat(cleanKnots(input));
     var result = f * 1.852;
     return Math.round(result) + " km/h";
 }
 
 function acres2sqm(input) {
-    var f = parseFloat(cleanAcres(input), 10);
+    var f = parseFloat(cleanAcres(input));
     var result = f * 4047;
     return Math.round(result) + " m²";
 }
 
-function textNodeFilter() {
-    return this.nodeType == 3 && this.nodeName.toLowerCase() != 'script' && this.nodeName.toLowerCase() != 'style';
+function nodeFilter() {
+    var b = this.nodeType == 3 && this.nodeName != 'SCRIPT' && this.nodeName != 'STYLE';
+    // console.log("New node " + this + " of type " + this.nodeType + " and name " + this.nodeName + " => " + b);
+    return b;
 }
 
 function makeNewText(original, replacement){
-    console.log("Making new text for " + original + " => " + replacement);
     return '<span title="' + original + '">' + replacement + '</span>';
 }
 
 
-$("body").find("*").contents().filter(textNodeFilter).each(function() {
+$("body").find("*").contents().filter(nodeFilter).each(function() {
     let textNode = $(this);
-    // let nodeParent = textNode.parent()[0].localName;
+
+    let nodeParentType = textNode.parent()[0].localName;
+    if(ignoredNodeTypes.include(nodeParentType) )
+    {
+        // console.log("Skipped over node type: " + nodeParentType);
+        return;
+    }
     let text = textNode.text();
 
     for (const match of text.matchAll(regex_yard)){

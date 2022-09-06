@@ -4,6 +4,28 @@
 	<meta charset="UTF-8">
 </head>
 <body><h1>Eurofox plugin test cases 🇪🇺 🔥 🦊</h1>
+<h2>Javascript and CSS</h2>
+<p>Below you'll find some tests to make sure that attributes of script and style tags or other css doesn't get modified by the plugin.</p>
+<div id="0F0F0F" style="background-color:red;">If you see this comment then the Javascript test is broken.</div>
+<script>
+document.getElementById("0F0F0F").innerHTML = "This is a test comment to make sure that the plugin does not modify script tags. If this comment is blue, then everything is fine.";
+document.getElementById("0F0F0F").style = "background-color:lightblue";
+</script>
+<span style="background-color:red"><div style="background-color:#0FFF0F">If this div is not green, then the plugin has failed to exclude css. Also this temperature of 89°F should be in Celsius.</div></span>
+<div class="yellow">This comment should be yellow. If it's not then the exclusion of style tags is broken.</div>
+<style>
+.yellow {
+  background-color: #FFFF0F;
+}
+</style>
+<div id="foobar0mps">This comment should be pink. If it's not then the exclusion of div attributes is broken.</div>
+<style>
+#foobar0mps {
+  background-color: pink;
+}
+</style>
+<br><br>
+
 <h2>Temperatures 🌡️</h2>
 <h3>This header contains a temperature of ° 114 F 🥵</h3>
 <div>It's 98°f in this div.</div>
@@ -25,6 +47,7 @@
 135 °f<br>
 There are 10 flies on the wall and this sentence must not match.
 </span>
+Test table:
 <table border="1"><tbody>
 <th colspan="2" style="text-align:center;padding-left:0">Quick Climate Info</th></tr>
 <tr><td style="padding-left:0">Hottest Month</td><td>July (65 °F avg)</td></tr>
@@ -32,17 +55,7 @@ There are 10 flies on the wall and this sentence must not match.
 <tr><td style="padding-left:0">Wettest Month</td><td>August (3.97" avg)</td></tr>
 <tr><td style="padding-left:0">Windiest Month</td><td>May (7 mph avg)</td></tr>
 </tbody></table>
-<div id="0F0F0F">If you see this comment then the Javascript test is broken.</div>
-<script>
-document.getElementById("0F0F0F").innerHTML = "This is a test comment to make sure that the plugin does not modify script tags.";
-</script>
-<span style="background-color:red"><div style="background-color:#0FFF0F">If this div is not green, then the plugin has failed to exclude css. Also this temperature of 89°F should be in Celsius.</div></span>
-<div class="yellow">This comment should be yellow. If it's not, please let us know.</div>
-<style>
-.yellow {
-  background-color: #FFFF0F;
-}
-</style>
+
 <h2>Sizes 📐</h2>
 <span>This span has a width of 23in. Its height is 0.3 in. 39" or 93 "</span>
 <div>This div has a dimension of 3 acres.</div>
@@ -72,5 +85,6 @@ At over 233 mph, this boaty mc boatface 🛥️ is much faster than its competit
 <br />
 The slowest train in the world (3mph) climbs the large hill steadily. While descending it can reach speeds of up to 3.9mph.
 <div>10 knots, 20knots, 30 kn, <br> 40kn, 1 knot, 0knot.</div>
+
 </body>
 </html>
