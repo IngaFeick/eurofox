@@ -1,11 +1,11 @@
-var regex_temperature = /(° ?)?[0-9]+(\.[0-9]+)? ?°? ?[fF]\b/g
-var regex_inch = /[0-9]+(\.[0-9]+)? ?(in(ch)?\b|")/g
-var regex_feet = /[0-9]+(\.[0-9]+)? ?(ft|feet|foot|feets)\b/g
-var regex_yard = /[0-9]+(\.[0-9]+)? ?(yd|yard|yards)\b/g
-var regex_miles = /[0-9]+(\.[0-9]+)? ?mi(le)?s?\b/g
-var regex_mph = /[0-9]+(\.[0-9]+)? ?(mph|miles per hour)\b/g
-var regex_knots = /[0-9]+(\.[0-9]+)? ?(knots|knot|kn)\b/g
-var regex_acres = /[0-9]+(\.[0-9]+)? ?(acres|acre|ac)\b/g
+const regex_temperature = /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g;
+const regex_inch = /[0-9]+(?:\.[0-9]+)? ?(?:in(?:ch)?\b|")/g;
+const regex_feet = /[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
+const regex_yard = /[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
+const regex_miles = /[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
+const regex_mph = /[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
+const regex_knots = /[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
+const regex_acres = /[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
 
 function cleanTemperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','')
