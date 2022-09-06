@@ -1,43 +1,53 @@
 var regex_temperature = /(° ?)?[0-9]+(\.[0-9]+)? ?°? ?[fF]\b/g
-var regex_inch = /[0-9]+(\.[0-9]+)? ?in(ch)?\b/g
+var regex_inch = /[0-9]+(\.[0-9]+)? ?(in(ch)?\b|")/g
 var regex_feet = /[0-9]+(\.[0-9]+)? ?(ft|feet|foot|feets)\b/g
 var regex_yard = /[0-9]+(\.[0-9]+)? ?(yd|yard|yards)\b/g
 var regex_miles = /[0-9]+(\.[0-9]+)? ?mi(le)?s?\b/g
 var regex_mph = /[0-9]+(\.[0-9]+)? ?(mph|miles per hour)\b/g
 var regex_knots = /[0-9]+(\.[0-9]+)? ?(knots|knot|kn)\b/g
+var regex_acres = /[0-9]+(\.[0-9]+)? ?(acres|acre|ac)\b/g
 
 function cleanTemperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','')
 }
 
+function cleanInput(input, removables){
+    removables.forEach((rep, i) => { console.log(rep); input = input.replace(rep, '')});
+    return input.replace(' ','')
+}
+
 function cleanInch(input){
-  return input.replace('inch', '').replace('in','').replace(' ','')
+  return cleanInput(input, ['inch','in','"'])
 }
 
 function cleanFeet(input){
-  return input.replace('feets', '').replace('feet', '').replace('foot', '').replace('ft','').replace(' ','')
+  return cleanInput(input, ['feets','feet','foot','ft']) // I know that feets is not a word, but you know the internet.
 }
 
 function cleanMiles(input){
-  return input.replace('miles', '').replace('mi','').replace('mile','').replace(' ','')
+  return cleanInput(input, ['miles','mile','mi'])
 }
 
 function cleanYard(input){
-  return input.replace('yards', '').replace('yard','').replace('yd','').replace(' ','')
+  return cleanInput(input, ['yards','yard','yd'])
 }
 
 function cleanMph(input){
-  return input.replace('miles per hour', '').replace('mps','').replace(' ','')
+  return cleanInput(input, ['miles per hour','mph'])
 }
 
 function cleanKnots(input){
-  return input.replace('knots', '').replace('knot','').replace('kn','').replace(' ','')
+  return cleanInput(input, ['knots','knot','kn'])
+}
+
+function cleanAcres(input){
+  return cleanInput(input, ['acres','acre','ac'])
 }
 
 function fahrenheit2Celsius(input) {
     var f = parseFloat(cleanTemperature(input), 10);
-    c = Math.round((f - 32) / 1.8);
-    return c + "° C"
+    var result = Math.round((f - 32) / 1.8);
+    return result + "° C"
 }
 
 function inch2Centimeters(input) {
@@ -73,6 +83,12 @@ function knots2kmh(input) {
     var f = parseFloat(cleanKnots(input), 10);
     var result = f * 1.852;
     return Math.round(result) + " km/h"
+}
+
+function acres2sqm(input) {
+    var f = parseFloat(cleanAcres(input), 10);
+    var result = f * 4047;
+    return Math.round(result) + " m²"
 }
 
 function textNodeFilter() {
@@ -116,5 +132,9 @@ $("body").find("*").contents().filter(textNodeFilter).each(function(index) {
     matches = text.match(regex_knots);
     if (matches) {
         textNode.replaceWith(text.replace(regex_knots, makeNewText(matches[0], knots2kmh(matches[0]))))
+    }
+    matches = text.match(regex_acres);
+    if (matches) {
+        textNode.replaceWith(text.replace(regex_acres, makeNewText(matches[0], acres2sqm(matches[0]))))
     }
 });
