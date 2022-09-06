@@ -15,7 +15,7 @@ function to_celsius(input) {
 }
 
 function textNodeFilter() {
-    return this.nodeType == 3 && this.nodeNametoLowerCase() != 'script' && this.nodeNametoLowerCase() != 'style'
+    return this.nodeType == 3 && this.nodeName.toLowerCase() != 'script' && this.nodeName.toLowerCase() != 'style'
 }
 
 
