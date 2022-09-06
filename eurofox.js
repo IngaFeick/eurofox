@@ -183,3 +183,15 @@ $("body").find("*").contents().filter(nodeFilter).each(function() {
 
     textNode.replaceWith(text);
 });
+
+
+const callback = (mutationList, observer) => {
+  for (const mutation of mutationList) {
+    console.log("Mutation:");
+    console.log(mutation);
+  }
+};
+const targetNode = document.body;
+const observerConfig = { attributes: true, childList: true, subtree: true };
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, observerConfig);
