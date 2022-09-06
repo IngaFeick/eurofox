@@ -16,6 +16,7 @@ To check if the installation works in your browser, navigate to the [test page](
 * exclude script nodes
 * remove console output
 
-## Links
+## Notes for development
 
-* [Regex101 for the temperature](https://regex101.com/r/Wrpp4x/1)
+* Regex for the temperature in [ecma](https://regex101.com/r/Wrpp4x/1) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
+* `npm install regex-translator; npx regex-translator -o -T ecma -F pcre -R "(° ?)?\d+(\.\d+)?+°?+ ?[fF]"` for converting regexes from pcre 🧠 => ecma 💪
