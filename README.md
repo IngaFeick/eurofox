@@ -30,6 +30,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 * WIP DOM mutation observer
 * BUG: multiple edge cases on the test page
+* replace numbers like `3.0` with `3` and remove all `.0` from tests
 * add missing unit tests
 * add github actions for unit tests and protect main branch
 * convert units for cooking (pint, cup, quart, various spoons and ounces)

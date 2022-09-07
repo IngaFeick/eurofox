@@ -102,10 +102,47 @@ test("translate2european", () => {
 // TODO add tests for mph = /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
 // TODO add tests for knots = /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
 // TODO add tests for acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
-// TODO add tests for barrel = /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
-// TODO add tests for gallons = /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
-// TODO add tests from 2nd h1
+test("translate2european", () => {
+    modify('10 gallons', '37.9 litres');
+});
+test("translate2european", () => {
+    modify('1 gallon', '3.8 litres');
+});
+test("translate2european", () => {
+    modify('200gallons', '757 litres');
+});
+test("translate2european", () => {
+    modify('3gal', '11.4 litres');
+});
+test("translate2european", () => {
+    modify('2 gal', '7.6 litres');
+});
+test("translate2european", () => {
+    modify('0.26417205124156 gallon', '1 litre');
+});
+test("translate2european", () => {
+    manual('Finally 0.2642 gallon which is exactly one litre.', 'Finally <span title=\"0.2642 gallon\">1 litre</span> which is exactly one litre.');
+});
+
+test("translate2european", () => {
+    modify('90 barrels', '10731.6 litres');
+});
+test("translate2european", () => {
+    modify('1 barrel', '119.2 litre');
+});
+test("translate2european", () => {
+    modify('1 bbl', '119.2 litre');
+});
+test("translate2european", () => {
+    modify('0bbl', '0 litres');
+});
+
+test("translate2european", () => {
+    modify('40bbl', '4769.6 litre');
+});
+
+// TODO add remaining tests from 2nd h1
 /*
 
 test("translate2european", () => {

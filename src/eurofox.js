@@ -64,7 +64,12 @@ function shortNumeric(input){
   // return Math.round(input);
   // if input is an integer, return as is, else truncate.
   // We don't want a 12 to be modified to a 12.0
-  return (input === parseInt(input, 10)) ? input : input.toFixed(1);
+  var shortNum = (input === parseInt(input, 10)) ? input : input.toFixed(1);
+  // we're still getting numbers like 3.0, probably due to rounding down
+  // brutal solution, not proud of this:
+  // since we need a string version of this anyway we can just type cast here and remove the .0
+  return shortNum.toString().replace(/\.0$/, '')
+  // apologies for this.
 }
 
 function fahrenheit2Celsius(input) {
