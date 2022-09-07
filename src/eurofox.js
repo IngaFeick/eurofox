@@ -1,7 +1,7 @@
 "use strict";
 
 const regex_temperature = /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g;
-const regex_inch = /\b[0-9]+(?:\.[0-9]+)? ?(?:in(?:ch|s)?\b|")/g;
+const regex_inch = /\b[0-9]+(\.[0-9]+)?((in| ?inch(es)?)\b| ?")/g;
 const regex_feet = /\b[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
 const regex_yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
 const regex_miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;

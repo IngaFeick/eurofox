@@ -44,7 +44,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 * Regexes:
     - temperature in [ecma](https://regex101.com/r/Wrpp4x/2) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
-    - inches https://regex101.com/r/Cjhgl4/5
+    - inches https://regex101.com/r/92Bl59/2
     - feet https://regex101.com/r/xVnj9A/3
     - miles https://regex101.com/r/qAti0n/2
     - mph https://regex101.com/r/8AvYcc/1
