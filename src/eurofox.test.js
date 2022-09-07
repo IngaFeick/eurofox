@@ -129,17 +129,17 @@ test("translate2european", () => {
     modify('90 barrels', '10731.6 litres');
 });
 test("translate2european", () => {
-    modify('1 barrel', '119.2 litre');
+    modify('1 barrel', '119.2 litres');
 });
 test("translate2european", () => {
-    modify('1 bbl', '119.2 litre');
+    modify('1 bbl', '119.2 litres');
 });
 test("translate2european", () => {
     modify('0bbl', '0 litres');
 });
 
 test("translate2european", () => {
-    modify('40bbl', '4769.6 litre');
+    modify('40bbl', '4769.6 litres');
 });
 
 // TODO add remaining tests from 2nd h1

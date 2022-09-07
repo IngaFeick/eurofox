@@ -121,7 +121,7 @@ function acres2sqm(input) {
 
 function barrel2litres(input) {
     var f = parseFloat(cleanBarrels(input));
-    var result = shortNumeric(f * 158.987);
+    var result = shortNumeric(f * 119.240471196);
     return result == 1 ? result + " litre" : result + " litres";
 }
 
