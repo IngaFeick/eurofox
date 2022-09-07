@@ -73,62 +73,44 @@ function shortNumeric(input){
 }
 
 function fahrenheit2Celsius(input) {
-  var f = cleanTemperature(input);
-  var result = shortNumeric((f - 32) / 1.8);
-  return shortNumeric(result) + "° C";
+  return shortNumeric((cleanTemperature(input) - 32) / 1.8) + "° C";
 }
 
 function inch2Centimeters(input) {
-  var f = cleanInch(input);
-  return shortNumeric(f * 2.54) + " cm";
+  return shortNumeric(cleanInch(input) * 2.54) + " cm";
 }
 
 function feet2Meters(input) {
-  var f = cleanFeet(input);
-  var result = f * 0.3048;
-  return shortNumeric(result) + " m";
+  return shortNumeric(cleanFeet(input) * 0.3048) + " m";
 }
 
 function yard2Meters(input) {
-  var f = cleanYard(input);
-  var result = f * 0.9144;
-  return shortNumeric(result) + " m";
+  return shortNumeric(cleanYard(input) * 0.9144) + " m";
 }
 
 function miles2Km(input) {
-  var f = cleanMiles(input);
-  var result = f * 1.609344;
-  return shortNumeric(result) + " km";
+  return shortNumeric(cleanMiles(input) * 1.609344) + " km";
 }
 
 function mph2kmh(input) {
-  var f = cleanMph(input);
-  var result = f * 1.609344;
-  // console.log("mph " + input + " as " + f + " => " + result);
-  return shortNumeric(result) + " km/h";
+  return shortNumeric(cleanMph(input) * 1.609344) + " km/h";
 }
 
 function knots2kmh(input) {
-  var f = cleanKnots(input);
-  var result = f * 1.852;
-  return shortNumeric(result) + " km/h";
+  return shortNumeric(cleanKnots(input) * 1.852) + " km/h";
 }
 
 function acres2sqm(input) {
-  var f = cleanAcres(input);
-  var result = f * 4047;
-  return shortNumeric(result) + " m²";
+  return shortNumeric(cleanAcres(input) * 4047) + " m²";
 }
 
 function barrel2litres(input) {
-  var f = cleanBarrels(input);
-  var result = shortNumeric(f * 119.240471196);
+  var result = shortNumeric(cleanBarrels(input) * 119.240471196);
   return result == 1 ? result + " litre" : result + " litres";
 }
 
 function gallon2litres(input) {
-  var f = cleanGallon(input);
-  var result = shortNumeric(f * 3.785);
+  var result = shortNumeric(cleanGallon(input) * 3.785);
   return result == 1 ? result + " litre" : result + " litres";
 }
 
