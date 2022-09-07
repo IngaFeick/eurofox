@@ -14,13 +14,13 @@ const regex_gallons = /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 const ignoredNodeTypes = ['style'];
 
 function cleanTemperature(input){
-  return input.replace(/[Ff]$/, '').replace('°','').replace(' ','');
+  return parseFloat(input.replace(/[Ff]$/, '').replace('°','').replace(' ',''));
 }
 
 function cleanInput(input, removables){
     removables.forEach((rep) => { input.replace(rep, '')});
     input.replace(' ','');
-    return input;
+    return parseFloat(input);
 }
 
 function cleanInch(input){
@@ -40,8 +40,8 @@ function cleanYard(input){
   return cleanInput(input, ['yards','yard','yd']);
 }
 
-function cleanMph(input){
-  return cleanInput(input, ['miles per hour','mph']);
+function cleanMph(input){ // TODO broken
+  return cleanInput(input, ['miles per hour','mile per hour','mph']);
 }
 
 function cleanKnots(input){
@@ -73,60 +73,60 @@ function shortNumeric(input){
 }
 
 function fahrenheit2Celsius(input) {
-    var f = parseFloat(cleanTemperature(input));
+    var f = cleanTemperature(input);
     var result = shortNumeric((f - 32) / 1.8);
     return shortNumeric(result) + "° C";
 }
 
 function inch2Centimeters(input) {
-    var f = parseFloat(cleanInch(input));
+    var f = cleanInch(input);
     return shortNumeric(f * 2.54) + " cm";
 }
 
 function feet2Meters(input) {
-    var f = parseFloat(cleanFeet(input));
+    var f = cleanFeet(input);
     var result = f * 0.3048;
     return shortNumeric(result) + " m";
 }
 
 function yard2Meters(input) {
-    var f = parseFloat(cleanYard(input));
+    var f = cleanYard(input);
     var result = f * 0.9144;
     return shortNumeric(result) + " m";
 }
 
 function miles2Km(input) {
-    var f = parseFloat(cleanMiles(input));
+    var f = cleanMiles(input);
     var result = f * 1.609344;
     return shortNumeric(result) + " km";
 }
 
 function mph2kmh(input) {
-    var f = parseFloat(cleanMph(input));
+    var f = cleanMph(input);
     var result = f * 1.609344;
     return shortNumeric(result) + " km/h";
 }
 
 function knots2kmh(input) {
-    var f = parseFloat(cleanKnots(input));
+    var f = cleanKnots(input);
     var result = f * 1.852;
     return shortNumeric(result) + " km/h";
 }
 
 function acres2sqm(input) {
-    var f = parseFloat(cleanAcres(input));
+    var f = cleanAcres(input);
     var result = f * 4047;
     return shortNumeric(result) + " m²";
 }
 
 function barrel2litres(input) {
-    var f = parseFloat(cleanBarrels(input));
+    var f = cleanBarrels(input);
     var result = shortNumeric(f * 119.240471196);
     return result == 1 ? result + " litre" : result + " litres";
 }
 
 function gallon2litres(input) {
-    var f = parseFloat(cleanGallon(input));
+    var f = cleanGallon(input);
     var result = shortNumeric(f * 3.785);
     return result == 1 ? result + " litre" : result + " litres";
 }
@@ -148,7 +148,15 @@ function updateNewNode(node){
 }
 
 function translate2european(text){
-  for (const match of text.matchAll(regex_yard)){
+    for (const match of text.matchAll(regex_mph)){
+      text = text.replaceAll(match[0], makeNewText(match[0], mph2kmh(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_knots)){
+      text = text.replaceAll(match[0], makeNewText(match[0], knots2kmh(match[0])));
+    }
+
+    for (const match of text.matchAll(regex_yard)){
       text = text.replaceAll(match[0], makeNewText(match[0], yard2Meters(match[0])));
     }
 
@@ -168,14 +176,6 @@ function translate2european(text){
       text = text.replaceAll(match[0], makeNewText(match[0], feet2Meters(match[0])));
     }
 
-    for (const match of text.matchAll(regex_mph)){
-      text = text.replaceAll(match[0], makeNewText(match[0], mph2kmh(match[0])));
-    }
-
-    for (const match of text.matchAll(regex_knots)){
-      text = text.replaceAll(match[0], makeNewText(match[0], knots2kmh(match[0])));
-    }
-
     for (const match of text.matchAll(regex_acres)){
       text = text.replaceAll(match[0], makeNewText(match[0], acres2sqm(match[0])));
     }
@@ -191,5 +191,5 @@ function translate2european(text){
     return text;
 }
 
-module.exports = {translate2european};
+module.exports = {translate2european,cleanMph};
 
