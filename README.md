@@ -5,10 +5,10 @@ To see the original value, hover over the measurement.
 
 
 Before:
-![Without the plugin](images/no-plugin.png "Without the plugin")
+![Without the plugin](./images/no-plugin.png "Without the plugin")
 
 After:
-![With the plugin](images/yes-plugin.png "With the plugin")
+![With the plugin](./images/yes-plugin.png "With the plugin")
 
 
 The numbers are rounded for easier reading, so don't expect exact values.
