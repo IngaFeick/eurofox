@@ -187,13 +187,13 @@ test("translate mph", () => {
     modify('3mph', '4.8 km/h');
 });
 test("clean mph", () => {
-	expect(cleanMph('1 mile per hour')).toBe('1');
+	expect(cleanMph('1 mile per hour')).toBe(1);
 });
 test("translate mph", () => {
     modify('1 mile per hour', '1.6 km/h');
 });
 test("clean mph", () => {
-	expect(cleanMph('3miles per hour')).toBe('3');
+	expect(cleanMph('3miles per hour')).toBe(3);
 });
 test("translate mph", () => {
     modify('3miles per hour', '4.8 km/h');
