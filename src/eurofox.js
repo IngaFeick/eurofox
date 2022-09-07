@@ -19,7 +19,7 @@ function cleanTemperature(input){
 
 function cleanInput(input, removables){
     removables.forEach((rep) => { input.replace(rep, '')});
-    input.replace(' ','');
+    // input.replace(' ','');
     return parseFloat(input);
 }
 
