@@ -16,7 +16,7 @@ The plugin will not work for values which are spelled out as words instead of nu
 
 The source is inspired by the [tc](https://github.com/spb/tc) firefox extension.
 
-To check if the installation works in your browser, please navigate to the [test page](testpage/test.html).
+To check if the installation works in your browser, please navigate to the [test page](demo/test.html).
 
 ## Supported units:
 

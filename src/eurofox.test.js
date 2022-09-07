@@ -6,12 +6,15 @@ function modify(input, output) {
 	expect(actualResult).toBe(wantedResult);
 }
 
-function leave(input, output) {
-	actualResult = translate2european(input);
-	expect(actualResult).toBe(output);
+function noChange(input) {
+	expect(translate2european(input)).toBe(input);
 }
 
-// TODO temperatures
+function manual(input, output) {
+	expect(translate2european(input)).toBe(output);
+}
+
+// TODO add tests for temperatures
 
 // Inches: ------------------------------------------------------ INCHES ---------------------
 test("translate2european", () => {
@@ -33,27 +36,27 @@ test("translate2european", () => {
     modify('89 inch', '226.1 cm');
 });
 test("translate2european", () => {
-    leave('these are 23 inches and this is 99.9 inch while this ends with 12in.',
+    manual('these are 23 inches and this is 99.9 inch while this ends with 12in.',
     	"these are <span title=\"23 inches\">58.4 cm</span> and this is <span title=\"99.9 inch\">253.7 cm</span> while this ends with <span title=\"12in\">30.5 cm</span>."
     	);
 });
 test("translate2european", () => {
-    leave('39" or 93 "', '<span title="39\"">99.1 cm</span> or <span title="93 \"">236.2 cm</span>');
+    manual('39" or 93 "', '<span title="39\"">99.1 cm</span> or <span title="93 \"">236.2 cm</span>');
 });
 test("translate2european", () => {
-    leave('"100"', '"100"');
+    noChange('"100"');
 });
 test("translate2european", () => {
-    leave('23 in cannot be matched due to the ambiguosity of language.', '23 in cannot be matched due to the ambiguosity of language.');
+    noChange('23 in cannot be matched due to the ambiguosity of language.');
 });
 test("translate2european", () => {
-    leave('There are 200 people in the countryside and 500 in the city.', 'There are 200 people in the countryside and 500 in the city.');
+    noChange('There are 200 people in the countryside and 500 in the city.');
 });
 test("translate2european", () => {
-    leave('I want to each 12 inchiladas', 'I want to each 12 inchiladas');
+    noChange('I want to each 12 inchiladas');
 });
 test("translate2european", () => {
-    leave('I\'m going to turn 13 in November.', 'I\'m going to turn 13 in November.');
+    noChange('I\'m going to turn 13 in November.');
 });
 
 // Feet: ------------------------------------------------------ FEET ---------------------
@@ -91,16 +94,47 @@ test("translate2european", () => {
     modify('34ft', '10.4 m');
 });
 test("translate2european", () => {
-    leave('3 feetless caterpillars sit on a sunflower', '3 feetless caterpillars sit on a sunflower');
+    noChange('3 feetless caterpillars sit on a sunflower');
 });
 
+// TODO add tests for yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
+// TODO add tests for miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
+// TODO add tests for mph = /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
+// TODO add tests for knots = /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
+// TODO add tests for acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
+// TODO add tests for barrel = /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
+// TODO add tests for gallons = /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
-
-
+// TODO add tests from 2nd h1
 /*
 
 test("translate2european", () => {
     modify('', '');
 });
+
+test("translate2european", () => {
+    noChange('');
+});
+
 */
+
+test("translate2european", () => {
+	var input = `The following span contains nothing but the word thousand, in numbers and in quotation marks:<br>
+<span class="token string">"1000"</span><br>
+The 1000 in quotation marks must not be replaced. <br>`;
+    noChange(input);
+});
+
+
+test("translate2european", () => {
+	var input = `<p>
+          <strong>Negative lookbehind assertion: </strong>Matches "x" only if
+          "x" is not preceded by "y". For example,
+          <code>/(?&lt;!-)\d+/</code> matches a number only if it is not
+          preceded by a minus sign. <code>/(?&lt;!-)\d+/.exec('3')</code>
+          matches "3". <code>/(?&lt;!-)\d+/.exec('-3')</code> match is not
+          found because the number is preceded by the minus sign.
+        </p>`;
+    noChange(input);
+});
 
