@@ -1,7 +1,7 @@
 "use strict";
 
 const regex_temperature = /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g;
-const regex_inch = /\b[0-9]+(\.[0-9]+)?((in| ?inch(es)?)\b| ?")/g;
+const regex_inch = /(?<!")\b\d+\s?"|\d+(\.\d+)?((in|\s?inch(es)?)\b)/g;
 const regex_feet = /\b[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
 const regex_yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
 const regex_miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
@@ -12,6 +12,8 @@ const regex_barrel = /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
 const regex_gallons = /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
 const ignoredNodeTypes = ['style'];
+
+export function hello() { return "hello"; } // TODO remove this test
 
 function cleanTemperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','');
@@ -135,23 +137,8 @@ function updateNewNode(node){
     rewrite(node);
 }
 
-function rewrite(textNode) {
-    console.log("Rewrite:");
-    console.log(textNode);
-
-    /* TODO this doesn't work when the node is passed from the Mutation Observer:
-    if (textNode.parent() && textNode.parent()[0])
-    {
-        let nodeParentType = textNode.parent()[0].localName;
-        if(ignoredNodeTypes.includes(nodeParentType) )
-        {
-            return;
-        }
-    }*/
-
-    let text = textNode.text();
-
-    for (const match of text.matchAll(regex_yard)){
+function translate2european(text){
+  for (const match of text.matchAll(regex_yard)){
       text = text.replaceAll(match[0], makeNewText(match[0], yard2Meters(match[0])));
     }
 
@@ -190,32 +177,5 @@ function rewrite(textNode) {
     for (const match of text.matchAll(regex_gallons)){
       text = text.replaceAll(match[0], makeNewText(match[0], gallon2litres(match[0])));
     }
-
-    textNode.replaceWith(text);
+    return text;
 }
-
-$("body").find("*").contents().filter(nodeFilter).each(function() {
-    let node = $(this);
-    rewrite(node);
-  });
-
-
-const mutationCallback = (mutationList, observer) => {
-  for (const mutation of mutationList) {
-    if (mutation.type == "childList") {
-      // console.log("Mutation:");
-      // console.log(mutation);
-      if (mutation.addedNodes) {
-        console.log("Added nodes:");
-        console.log(mutation.addedNodes);
-       // TODO filter on text nodes
-        mutation.addedNodes.forEach(node => updateNewNode(node));
-
-      }
-    }
-  }
-};
-const targetNode = document.body;
-const observerConfig = { attributes: true, childList: true, subtree: true };
-const observer = new MutationObserver(mutationCallback);
-observer.observe(targetNode, observerConfig);

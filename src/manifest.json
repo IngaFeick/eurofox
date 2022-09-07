@@ -13,7 +13,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["jquery-3.6.1.slim.min.js","eurofox.js"]
+      "js": ["jquery-3.6.1.slim.min.js","eurofox.js", "main.js"]
     }
   ]
 
