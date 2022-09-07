@@ -80,7 +80,7 @@ Miles Teller is staring in the new Top Gun movie.<br /></span>
 </body>
 <h3>Yards</h3>
 <span>23 yards, 10 yard, 45 yd, 0.9 yd. 3yd. <br>
-Do not replace my backyard. The size of my backyard is 0.5 acres.</span>
+The size of my backyard is 0.5 acres.</span>
 <h3>Inches</h3>
 This 7" vinyl is in great condition. Nine inch nails are irreplacable.
 9 inch nails however can be substituted.
@@ -95,11 +95,28 @@ The slowest train in the world (3mph) climbs the large hill steadily. While desc
 10 gallons, 2 gal, 1 gallon, 3gal, 100gal, 200gallons.
 90 barrels, 1 barrel, 0 bbl, 40bbl.
 Finally 0.2642 gallon which is exactly one litre.
+
+
+
+<h1>Test cases from the interwebs</h1>
+<h2>#1 Fractions with whitespace after mantissa</h2>
+For example, a 2 x 6 is actually 1 1/2 in. x 5 1/2 in.<br>
+This half inch (1/2 in) must not be converted to "1/5 cm".
+<h2>#2 Quotation marks are not inches.</h2>
+The following span contains nothing but the word thousand, in numbers and in quotation marks:<br>
+<span class="token string">"1000"</span><br>
+The 1000 in quotation marks must not be replaced. <br>
+<h2>#3 Don't replace the number in the brackets</h2>
+With a population of around 131,136 (and 233,034 in the Capital Region), it is the centre of Iceland's cultural, economic, and governmental activity, and is a popular tourist destination. (<a href="https://en.wikipedia.org/wiki/Reykjav%C3%ADk">source</a>)
+<h2>#4 Number ranges </h2>
+The usual pattern is a year-to-year variability, with a short string of dry years of 5–10 in rainfall. (<a href="https://en.wikipedia.org/wiki/Los_Angeles#Climate">source</a>)
+Also it can reach top speeds of 52 to 74 mph.
+
 <h2>DOM manipulation check </h2>
 <script language="javascript">
 setTimeout(() => {
 	var surpriseUpdateDiv = document.createElement('div');
-	surpriseUpdateDiv.innerHTML = "If you see this text and this temperature (90°F) in celsius then it means that the mutation observer test has worked.";
+	surpriseUpdateDiv.innerHTML = "If you see this text AND this temperature (90°F) <- <b>IN CELSIUS</b> then it means that the mutation observer test has worked.";
 	document.body.appendChild(surpriseUpdateDiv);
 	console.log("DOM manipulated.");
 }, "1000");
@@ -109,5 +126,6 @@ setTimeout(() => {
 
 */
 </script>
+
 </body>
 </html>

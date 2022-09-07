@@ -1,15 +1,15 @@
 "use strict";
 
 const regex_temperature = /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g;
-const regex_inch = /[0-9]+(?:\.[0-9]+)? ?(?:in(?:ch|s)?\b|")/g;
-const regex_feet = /[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
-const regex_yard = /[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
-const regex_miles = /[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
-const regex_mph = /[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
-const regex_knots = /[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
-const regex_acres = /[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
-const regex_barrel = /[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
-const regex_gallons = /[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
+const regex_inch = /\b[0-9]+(?:\.[0-9]+)? ?(?:in(?:ch|s)?\b|")/g;
+const regex_feet = /\b[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
+const regex_yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
+const regex_miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
+const regex_mph = /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
+const regex_knots = /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
+const regex_acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
+const regex_barrel = /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
+const regex_gallons = /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
 const ignoredNodeTypes = ['style'];
 
@@ -129,16 +129,26 @@ function makeNewText(original, replacement){
     return '<span title="' + original + '">' + replacement + '</span>';
 }
 
+function updateNewNode(node){
+    console.log("New node of type " + node.nodeType);
+    console.log(node);
+    rewrite(node);
+}
 
+function rewrite(textNode) {
+    console.log("Rewrite:");
+    console.log(textNode);
 
-$("body").find("*").contents().filter(nodeFilter).each(function() {
-    let textNode = $(this);
-
-    let nodeParentType = textNode.parent()[0].localName;
-    if(ignoredNodeTypes.includes(nodeParentType) )
+    /* TODO this doesn't work when the node is passed from the Mutation Observer:
+    if (textNode.parent() && textNode.parent()[0])
     {
-        return;
-    }
+        let nodeParentType = textNode.parent()[0].localName;
+        if(ignoredNodeTypes.includes(nodeParentType) )
+        {
+            return;
+        }
+    }*/
+
     let text = textNode.text();
 
     for (const match of text.matchAll(regex_yard)){
@@ -182,16 +192,30 @@ $("body").find("*").contents().filter(nodeFilter).each(function() {
     }
 
     textNode.replaceWith(text);
-});
+}
+
+$("body").find("*").contents().filter(nodeFilter).each(function() {
+    let node = $(this);
+    rewrite(node);
+  });
 
 
-const callback = (mutationList, observer) => {
+const mutationCallback = (mutationList, observer) => {
   for (const mutation of mutationList) {
-    console.log("Mutation:");
-    console.log(mutation);
+    if (mutation.type == "childList") {
+      // console.log("Mutation:");
+      // console.log(mutation);
+      if (mutation.addedNodes) {
+        console.log("Added nodes:");
+        console.log(mutation.addedNodes);
+       // TODO filter on text nodes
+        mutation.addedNodes.forEach(node => updateNewNode(node));
+
+      }
+    }
   }
 };
 const targetNode = document.body;
 const observerConfig = { attributes: true, childList: true, subtree: true };
-const observer = new MutationObserver(callback);
+const observer = new MutationObserver(mutationCallback);
 observer.observe(targetNode, observerConfig);

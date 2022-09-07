@@ -20,15 +20,18 @@ To check if the installation works in your browser, please navigate to the [test
 ## TODOs
 
 * WIP DOM mutation observer
-* BUG: fractions like `1/2 in` are incorrectly converted to `1/5 cm`; TODO translate some most common fractions into decimal syntax.
+* BUG: fractions like `1/2 in` are incorrectly converted to `1/5 cm`;
 * BUG: cases like `1 1/2 in. x 5 1/2 in` where there is whitespace between the mantissa and the decimal point (or lack thereof) are not recognized yet. As a consequence the span titles are messed up: `<span title="<span title=" 2="" in"="">5 cm</span>` (test case: https://thediyplan.com/symbol-of-feet-and-inches/ search for "For example, a 2 x 6 is actually")
-* BUG: in this [test case](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) the tag `<span class="token string">"1000"</span>` gets replaced to `"2540 cm` ( please add the missing quotation mark on top of the horrible conversion)
+* BUG: in this [test case](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) the tag `<span class="token string">"1000"</span>` gets replaced to `"2540 cm` -> not all quotation marks are inches, dude.
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
 * remove console output
+* add screenshots to README
 * maybe replace jquery with pure js
 * write unit tests
+* add github actions and protect main branch
 * make logo
 * make ESLint more strict
+* turn into JS module
 * publish
 
 ## Notes for development
@@ -44,8 +47,5 @@ To check if the installation works in your browser, please navigate to the [test
 * more units up for convertion at
     - [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
     - [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
-
-## Fun facts
-
-* I'm not a frontend dev, I don't really know what I'm doing. Apologies.
+* Fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
 
