@@ -148,6 +148,8 @@ test("translate barrels", () => {
     modify('40bbl', '4769.6 litres');
 });
 
+// ------------------------------------------------------ KNOTS ---------------------
+
 test("translate knots", () => {
     modify('10 knots', '18.5 km/h');
 });
@@ -170,6 +172,26 @@ test("translate knots", () => {
     modify('13.3 knots', '24.6 km/h');
 });
 
+// ------------------------------------------------------ MPH ---------------------
+
+test("translate mph", () => {
+    modify('0 mph', '0 km/h');
+});
+test("translate mph", () => {
+    modify('10 mph', '16.1 km/h');
+});
+test("translate mph", () => {
+    modify('1 mph', '1.6 km/h');
+});
+test("translate mph", () => {
+    modify('3mph', '4.8 km/h');
+});
+test("translate mph", () => {
+    modify('1 mile per hour', '1.6 km/h');
+});
+test("translate mph", () => {
+    modify('3miles per hour', '4.8 km/h');
+});
 /*
 
 test("translate2european", () => {
