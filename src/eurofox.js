@@ -60,62 +60,69 @@ function cleanGallon(input){
   return cleanInput(input, ['gallons','gallon','gal']);
 }
 
+function shortNumeric(input){
+  // return Math.round(input);
+  // if input is an integer, return as is, else truncate.
+  // We don't want a 12 to be modified to a 12.0
+  return (input === parseInt(input, 10)) ? input : input.toFixed(1);
+}
+
 function fahrenheit2Celsius(input) {
     var f = parseFloat(cleanTemperature(input));
-    var result = Math.round((f - 32) / 1.8);
-    return result + "° C";
+    var result = shortNumeric((f - 32) / 1.8);
+    return shortNumeric(result) + "° C";
 }
 
 function inch2Centimeters(input) {
     var f = parseFloat(cleanInch(input));
-    return Math.round(f * 2.54) + " cm";
+    return shortNumeric(f * 2.54) + " cm";
 }
 
 function feet2Meters(input) {
     var f = parseFloat(cleanFeet(input));
     var result = f * 0.3048;
-    return Math.round(result) + " m";
+    return shortNumeric(result) + " m";
 }
 
 function yard2Meters(input) {
     var f = parseFloat(cleanYard(input));
     var result = f * 0.9144;
-    return Math.round(result) + " m";
+    return shortNumeric(result) + " m";
 }
 
 function miles2Km(input) {
     var f = parseFloat(cleanMiles(input));
     var result = f * 1.609344;
-    return Math.round(result) + " km";
+    return shortNumeric(result) + " km";
 }
 
 function mph2kmh(input) {
     var f = parseFloat(cleanMph(input));
     var result = f * 1.609344;
-    return Math.round(result) + " km/h";
+    return shortNumeric(result) + " km/h";
 }
 
 function knots2kmh(input) {
     var f = parseFloat(cleanKnots(input));
     var result = f * 1.852;
-    return Math.round(result) + " km/h";
+    return shortNumeric(result) + " km/h";
 }
 
 function acres2sqm(input) {
     var f = parseFloat(cleanAcres(input));
     var result = f * 4047;
-    return Math.round(result) + " m²";
+    return shortNumeric(result) + " m²";
 }
 
 function barrel2litres(input) {
     var f = parseFloat(cleanBarrels(input));
-    var result = Math.round(f * 158.987);
+    var result = shortNumeric(f * 158.987);
     return result == 1 ? result + " litre" : result + " litres";
 }
 
 function gallon2litres(input) {
     var f = parseFloat(cleanGallon(input));
-    var result = Math.round(f * 3.785);
+    var result = shortNumeric(f * 3.785);
     return result == 1 ? result + " litre" : result + " litres";
 }
 
@@ -175,9 +182,9 @@ function translate2european(text){
     for (const match of text.matchAll(regex_gallons)){
       text = text.replaceAll(match[0], makeNewText(match[0], gallon2litres(match[0])));
     }
+
     return text;
 }
 
-function hello() { return "hello"; } // TODO remove this test
-module.exports = {hello, translate2european};
+module.exports = {translate2european};
 
