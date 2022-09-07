@@ -37,6 +37,7 @@ To check if the installation works in your browser, please navigate to the [test
 * make ESLint more strict
 * remove console output
 * turn into JS module
+* clean up screenshots and highlight translation
 * publish
 
 ## Notes for development
