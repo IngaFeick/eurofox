@@ -4,8 +4,8 @@ const regex_temperature = /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g;
 const regex_inch = /(?<!")\b\d+\s?"|\d+(\.\d+)?((in|\s?inch(es)?)\b)/g;
 const regex_feet = /\b[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
 const regex_yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
-const regex_miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
-const regex_mph = /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|miles per hour)\b/g;
+const regex_miles = /[0-9]+(\.[0-9]+)? ?°? ?mi(le)?s?\b(?! per hour)/g;
+const regex_mph = /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|mile(?:s)? per hour)\b/g;
 const regex_knots = /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
 const regex_acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
 const regex_barrel = /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
@@ -73,62 +73,63 @@ function shortNumeric(input){
 }
 
 function fahrenheit2Celsius(input) {
-    var f = cleanTemperature(input);
-    var result = shortNumeric((f - 32) / 1.8);
-    return shortNumeric(result) + "° C";
+  var f = cleanTemperature(input);
+  var result = shortNumeric((f - 32) / 1.8);
+  return shortNumeric(result) + "° C";
 }
 
 function inch2Centimeters(input) {
-    var f = cleanInch(input);
-    return shortNumeric(f * 2.54) + " cm";
+  var f = cleanInch(input);
+  return shortNumeric(f * 2.54) + " cm";
 }
 
 function feet2Meters(input) {
-    var f = cleanFeet(input);
-    var result = f * 0.3048;
-    return shortNumeric(result) + " m";
+  var f = cleanFeet(input);
+  var result = f * 0.3048;
+  return shortNumeric(result) + " m";
 }
 
 function yard2Meters(input) {
-    var f = cleanYard(input);
-    var result = f * 0.9144;
-    return shortNumeric(result) + " m";
+  var f = cleanYard(input);
+  var result = f * 0.9144;
+  return shortNumeric(result) + " m";
 }
 
 function miles2Km(input) {
-    var f = cleanMiles(input);
-    var result = f * 1.609344;
-    return shortNumeric(result) + " km";
+  var f = cleanMiles(input);
+  var result = f * 1.609344;
+  return shortNumeric(result) + " km";
 }
 
 function mph2kmh(input) {
-    var f = cleanMph(input);
-    var result = f * 1.609344;
-    return shortNumeric(result) + " km/h";
+  var f = cleanMph(input);
+  var result = f * 1.609344;
+  // console.log("mph " + input + " as " + f + " => " + result);
+  return shortNumeric(result) + " km/h";
 }
 
 function knots2kmh(input) {
-    var f = cleanKnots(input);
-    var result = f * 1.852;
-    return shortNumeric(result) + " km/h";
+  var f = cleanKnots(input);
+  var result = f * 1.852;
+  return shortNumeric(result) + " km/h";
 }
 
 function acres2sqm(input) {
-    var f = cleanAcres(input);
-    var result = f * 4047;
-    return shortNumeric(result) + " m²";
+  var f = cleanAcres(input);
+  var result = f * 4047;
+  return shortNumeric(result) + " m²";
 }
 
 function barrel2litres(input) {
-    var f = cleanBarrels(input);
-    var result = shortNumeric(f * 119.240471196);
-    return result == 1 ? result + " litre" : result + " litres";
+  var f = cleanBarrels(input);
+  var result = shortNumeric(f * 119.240471196);
+  return result == 1 ? result + " litre" : result + " litres";
 }
 
 function gallon2litres(input) {
-    var f = cleanGallon(input);
-    var result = shortNumeric(f * 3.785);
-    return result == 1 ? result + " litre" : result + " litres";
+  var f = cleanGallon(input);
+  var result = shortNumeric(f * 3.785);
+  return result == 1 ? result + " litre" : result + " litres";
 }
 
 function nodeFilter() {
@@ -138,58 +139,60 @@ function nodeFilter() {
 }
 
 function makeNewText(original, replacement){
-    return '<span title="' + original + '">' + replacement + '</span>';
+  return '<span title="' + original + '">' + replacement + '</span>';
 }
 
 function updateNewNode(node){
-    console.log("New node of type " + node.nodeType);
-    console.log(node);
-    rewrite(node);
+  console.log("New node of type " + node.nodeType);
+  console.log(node);
+  rewrite(node);
 }
 
 function translate2european(text){
-    for (const match of text.matchAll(regex_mph)){
-      text = text.replaceAll(match[0], makeNewText(match[0], mph2kmh(match[0])));
-    }
+  for (const match of text.matchAll(regex_mph)){
+    console.log("Match for regex_mph:"); console.log(match);
+    console.log("Replacement raw for " + match[0] + " is " + mph2kmh(match[0]));
+    console.log("Replacement final is " + makeNewText(match[0], mph2kmh(match[0])));
+    text = text.replaceAll(match[0], makeNewText(match[0], mph2kmh(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_knots)){
-      text = text.replaceAll(match[0], makeNewText(match[0], knots2kmh(match[0])));
-    }
+  for (const match of text.matchAll(regex_knots)){
+    text = text.replaceAll(match[0], makeNewText(match[0], knots2kmh(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_yard)){
-      text = text.replaceAll(match[0], makeNewText(match[0], yard2Meters(match[0])));
-    }
+  for (const match of text.matchAll(regex_yard)){
+    text = text.replaceAll(match[0], makeNewText(match[0], yard2Meters(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_temperature)){
-      text = text.replaceAll(match[0], makeNewText(match[0], fahrenheit2Celsius(match[0])));
-    }
+  for (const match of text.matchAll(regex_temperature)){
+    text = text.replaceAll(match[0], makeNewText(match[0], fahrenheit2Celsius(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_inch)){
-      text = text.replaceAll(match[0], makeNewText(match[0], inch2Centimeters(match[0])));
-    }
+  for (const match of text.matchAll(regex_inch)){
+    text = text.replaceAll(match[0], makeNewText(match[0], inch2Centimeters(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_miles)){
-      text = text.replaceAll(match[0], makeNewText(match[0], miles2Km(match[0])));
-    }
+  for (const match of text.matchAll(regex_miles)){
+    text = text.replaceAll(match[0], makeNewText(match[0], miles2Km(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_feet)){
-      text = text.replaceAll(match[0], makeNewText(match[0], feet2Meters(match[0])));
-    }
+  for (const match of text.matchAll(regex_feet)){
+    text = text.replaceAll(match[0], makeNewText(match[0], feet2Meters(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_acres)){
-      text = text.replaceAll(match[0], makeNewText(match[0], acres2sqm(match[0])));
-    }
+  for (const match of text.matchAll(regex_acres)){
+    text = text.replaceAll(match[0], makeNewText(match[0], acres2sqm(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_barrel)){
-      text = text.replaceAll(match[0], makeNewText(match[0], barrel2litres(match[0])));
-    }
+  for (const match of text.matchAll(regex_barrel)){
+    text = text.replaceAll(match[0], makeNewText(match[0], barrel2litres(match[0])));
+  }
 
-    for (const match of text.matchAll(regex_gallons)){
-      text = text.replaceAll(match[0], makeNewText(match[0], gallon2litres(match[0])));
-    }
+  for (const match of text.matchAll(regex_gallons)){
+    text = text.replaceAll(match[0], makeNewText(match[0], gallon2litres(match[0])));
+  }
 
-    return text;
+  return text;
 }
 
 module.exports = {translate2european,cleanMph};
-

@@ -40,6 +40,7 @@ To check if the installation works in your browser, please navigate to the [test
 * turn into JS module
 * clean up screenshots and highlight translation
 * publish
+* add integration tests
 * add options to exclude domains
 
 ## Notes for development
