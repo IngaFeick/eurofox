@@ -39,6 +39,7 @@ To check if the installation works in your browser, please navigate to the [test
 * turn into JS module
 * clean up screenshots and highlight translation
 * publish
+* add options to exclude domains
 
 ## Notes for development
 
@@ -53,5 +54,5 @@ To check if the installation works in your browser, please navigate to the [test
 * more units up for convertion at
     - [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
     - [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
-* Fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
+* fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
 
