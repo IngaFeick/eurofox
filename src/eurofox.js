@@ -13,8 +13,6 @@ const regex_gallons = /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
 const ignoredNodeTypes = ['style'];
 
-export function hello() { return "hello"; } // TODO remove this test
-
 function cleanTemperature(input){
   return input.replace(/[Ff]$/, '').replace('°','').replace(' ','');
 }
@@ -179,3 +177,7 @@ function translate2european(text){
     }
     return text;
 }
+
+function hello() { return "hello"; } // TODO remove this test
+module.exports = {hello, translate2european};
+
