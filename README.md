@@ -30,7 +30,8 @@ To check if the installation works in your browser, please navigate to the [test
 
 * WIP DOM mutation observer
 * BUG: multiple edge cases on the test page
-* write unit tests, add github actions and protect main branch
+* add missing unit tests
+* add github actions for unit tests and protect main branch
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
 * maybe replace jquery with pure js
 * make logo?
@@ -54,5 +55,6 @@ To check if the installation works in your browser, please navigate to the [test
 * more units up for convertion at
     - [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
     - [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
+* run `npm test` for unit test fun.
 * fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
 
