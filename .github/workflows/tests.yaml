@@ -1,10 +1,12 @@
 name: npm test
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    paths:
+      - 'src/*.js'
+  push:
+    paths:
+      - 'src/*.js'
 
 jobs:
   build:
