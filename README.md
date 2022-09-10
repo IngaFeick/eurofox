@@ -3,7 +3,6 @@
 Firefox plugin to automatically translate ° Fahrenheit and size measurements into european units.
 To see the original value, hover over the measurement.
 
-
 Before:
 ![Without the plugin](./images/no-plugin.png "Without the plugin")
 
@@ -12,11 +11,10 @@ After:
 
 
 The numbers are rounded for easier reading, so don't expect exact values.
-The plugin will not work for values which are spelled out as words instead of numbers (such as `one mile` instead of `1 mile`).
+The plugin will not work (yet) for values which are spelled out as words instead of numbers (such as `one mile` instead of `1 mile`).
 
-The source is inspired by the [tc](https://github.com/spb/tc) firefox extension.
 
-To check if the installation works in your browser, please navigate to the [test page](testpage/test.html).
+To check if the installation works in your browser, please navigate to the [test page](demo/test.html).
 
 ## Supported units:
 
@@ -28,18 +26,25 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
+* BUG: exclusion of style tags doesn't work anymore
 * WIP DOM mutation observer
 * BUG: multiple edge cases on the test page
-* write unit tests, add github actions and protect main branch
+* add missing unit tests
+* add github actions for unit tests and protect main branch
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
+* remove redundancies in function definitions
 * maybe replace jquery with pure js
 * make logo?
 * make ESLint more strict
 * remove console output
 * turn into JS module
 * clean up screenshots and highlight translation
+* maybe ignore invisible nodes (css display/visibility)
 * publish
+* add integration tests
 * add options to exclude domains
+* maybe support spelled out numbers, like `nine inch nails` in addition to `9 inch nails`
+* add config option for css for the replacement span, such as background colour
 
 ## Notes for development
 
@@ -54,5 +59,8 @@ To check if the installation works in your browser, please navigate to the [test
 * more units up for convertion at
     - [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
     - [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
+* run `npm test` for unit tests.
 * fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
+* the source was, at one point, inspired by the [tc](https://github.com/spb/tc) firefox extension.
+
 
