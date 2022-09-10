@@ -64,4 +64,5 @@ To check if the installation works in your browser, please navigate to the [test
 * fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
 * the source was, at one point, inspired by the [tc](https://github.com/spb/tc) firefox extension.
 
+![Test](./images/eurofox.png "Eurofox")
 
