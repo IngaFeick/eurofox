@@ -26,15 +26,15 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
+* BUG: broken test for inches (see regex101 link)
 * BUG: exclusion of style tags doesn't work anymore
-* WIP DOM mutation observer
+* WIP: DOM mutation observer - how to avoid endless recursion?
 * BUG: multiple edge cases on the test page
-* add missing unit tests
-* add github actions for unit tests and protect main branch
+* add missing unit tests for yard, miles, acres and edge cases from test page
+* github protect main branch
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
 * remove redundancies in function definitions
 * maybe replace jquery with pure js
-* make logo?
 * make ESLint more strict
 * remove console output
 * explain demo page and add screenshots of expected outcomes
@@ -51,7 +51,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 * Regexes:
     - temperature in [ecma](https://regex101.com/r/Wrpp4x/2) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
-    - inches https://regex101.com/r/92Bl59/2
+    - inches https://regex101.com/r/WO25Zd/2
     - feet https://regex101.com/r/xVnj9A/3
     - miles https://regex101.com/r/qAti0n/2
     - mph https://regex101.com/r/8AvYcc/1
