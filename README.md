@@ -26,7 +26,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
-* WIP add_tests branch: doesn't work anymore when running in browser
+* BUG: exclusion of style tags doesn't work anymore
 * WIP DOM mutation observer
 * BUG: multiple edge cases on the test page
 * add missing unit tests
