@@ -1,6 +1,6 @@
 // const {translate2european} = require('./eurofox');
 
-import { translate2european } from 'eurofox';
+import { translate2european } from './eurofox';
 
 function modify(input, output) {
 	let actualResult = translate2european(input);
