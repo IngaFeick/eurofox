@@ -4,15 +4,19 @@
   "description": "Firefox plugin to automatically translate ° Fahrenheit and size measurements into european units. To see the original value, hover over the measurement.",
   "main": "eurofox.js",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/IngaFeick/eurofox.git"
   },
+  "type": "module",
   "author": "",
   "bugs": {
     "url": "https://github.com/IngaFeick/eurofox/issues"
   },
-  "homepage": "https://github.com/IngaFeick/eurofox#readme"
+  "homepage": "https://github.com/IngaFeick/eurofox#readme",
+  "devDependencies": {
+    "jest": "^29.0.2"
+  }
 }

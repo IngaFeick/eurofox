@@ -1,8 +1,10 @@
-const {translate2european} = require('./eurofox');
+// const {translate2european} = require('./eurofox');
+
+import { translate2european } from 'eurofox';
 
 function modify(input, output) {
-	actualResult = translate2european(input);
-	wantedResult = '<span title="' + input + '">' + output + '</span>';
+	let actualResult = translate2european(input);
+	let wantedResult = '<span title="' + input + '">' + output + '</span>';
 	expect(actualResult).toBe(wantedResult);
 }
 

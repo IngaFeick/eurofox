@@ -26,6 +26,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
+* BUG: unit tests dont work anymore
 * BUG: exclusion of style tags doesn't work anymore
 * WIP DOM mutation observer
 * BUG: multiple edge cases on the test page
@@ -37,15 +38,15 @@ To check if the installation works in your browser, please navigate to the [test
 * make logo?
 * make ESLint more strict
 * remove console output
-* turn into JS module
-* clean up screenshots and highlight translation
+* explain demo page and add screenshots of expected outcomes
 * maybe ignore invisible nodes (css display/visibility)
-* publish
 * add integration tests
 * add options to exclude domains
 * maybe support spelled out numbers, like `nine inch nails` in addition to `9 inch nails`
 * add config option for css for the replacement span, such as background colour
+* add button to activate / deactivate in toolbar
 * test in chrome
+* publish
 
 ## Notes for development
 
