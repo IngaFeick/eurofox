@@ -45,6 +45,7 @@ To check if the installation works in your browser, please navigate to the [test
 * add options to exclude domains
 * maybe support spelled out numbers, like `nine inch nails` in addition to `9 inch nails`
 * add config option for css for the replacement span, such as background colour
+* test in chrome
 
 ## Notes for development
 
