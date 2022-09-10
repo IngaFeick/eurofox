@@ -119,27 +119,12 @@ function gallon2litres(input) {
   return result == 1 ? result + " litre" : result + " litres";
 }
 
-function nodeFilter() {
-    var b = this.nodeType == 3 && this.nodeName != 'SCRIPT' && this.nodeName != 'STYLE';
-    // console.log("New node " + this + " of type " + this.nodeType + " and name " + this.nodeName + " => " + b);
-    return b;
-}
-
 function makeNewText(original, replacement){
   return '<span title="' + original + '">' + replacement + '</span>';
 }
 
-function updateNewNode(node){
-  console.log("New node of type " + node.nodeType);
-  console.log(node);
-  rewrite(node);
-}
-
 function translate2european(text){
   for (const match of text.matchAll(regex_mph)){
-    console.log("Match for regex_mph:"); console.log(match);
-    console.log("Replacement raw for " + match[0] + " is " + mph2kmh(match[0]));
-    console.log("Replacement final is " + makeNewText(match[0], mph2kmh(match[0])));
     text = text.replaceAll(match[0], makeNewText(match[0], mph2kmh(match[0])));
   }
 
@@ -182,52 +167,8 @@ function translate2european(text){
   return text;
 }
 
-// export { translate2european };
+export { translate2european };
 //module.exports = {translate2european,cleanMph};
 
-function rewrite(textNode) {
-    console.log("Rewrite:");
-    console.log(textNode);
-
-    /* TODO this doesn't work when the node is passed from the Mutation Observer:
-    if (textNode.parent() && textNode.parent()[0])
-    {
-        let nodeParentType = textNode.parent()[0].localName;
-        if(ignoredNodeTypes.includes(nodeParentType) )
-        {
-            return;
-        }
-    }*/
-
-    let text = translate2european(textNode.text());
-    textNode.replaceWith(text);
-}
-
-/*
-
-$("body").find("*").contents().filter(nodeFilter).each(function() {
-    let node = $(this);
-    rewrite(node);
-  });
 
 
-const mutationCallback = (mutationList, observer) => {
-  for (const mutation of mutationList) {
-    if (mutation.type == "childList") {
-      // console.log("Mutation:");
-      // console.log(mutation);
-      if (mutation.addedNodes) {
-        console.log("Added nodes:");
-        console.log(mutation.addedNodes);
-       // TODO filter on text nodes
-        mutation.addedNodes.forEach(node => updateNewNode(node));
-
-      }
-    }
-  }
-};
-const targetNode = document.body;
-const observerConfig = { attributes: true, childList: true, subtree: true };
-const observer = new MutationObserver(mutationCallback);
-observer.observe(targetNode, observerConfig);
-*/

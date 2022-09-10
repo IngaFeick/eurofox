@@ -7,13 +7,14 @@
   "description": "Replaces degrees fahrenheit with celsius and inches with centimeters etc. Hover over temperatures / sizes to see the original value.",
 
   "icons": {
-    "48": "icons/eu48.png"
+    "48": "icons/eurofox48.png",
+    "96": "icons/eurofox96.png"
   },
 
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["jquery-3.6.1.slim.min.js","eurofox.js", "main.js"]
+      "js": ["jquery-3.6.1.slim.min.js", "main.js"]
     }
   ]
 
