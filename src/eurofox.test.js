@@ -61,6 +61,10 @@ test("translate inches", () => {
 test("translate inches", () => {
     noChange('I\'m going to turn 13 in November.');
 });
+test("translate inches", () => {
+    noChange('version "7.9.0"');
+});
+
 
 // --------------------------------------------------------- FEET ---------------------
 
