@@ -1,6 +1,4 @@
 
-import { * } from 'eurofox';
-
 function rewrite(textNode) {
     console.log("Rewrite:");
     console.log(textNode);

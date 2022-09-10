@@ -1,4 +1,4 @@
-const {translate2european, cleanMph} = require('./eurofox');
+const {translate2european} = require('./eurofox');
 
 function modify(input, output) {
 	actualResult = translate2european(input);
@@ -104,6 +104,7 @@ test("translate feet", () => {
 // TODO add tests for yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
 // TODO add tests for miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
 // TODO add tests for acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
+
 // ------------------------------------------------------ GALLONS ---------------------
 
 test("translate gallons", () => {
@@ -146,6 +147,9 @@ test("translate barrels", () => {
 test("translate barrels", () => {
     modify('40bbl', '4769.6 litres');
 });
+test("translate barrels", () => {
+    noChange('barrel of a gun');
+});
 
 // ------------------------------------------------------ KNOTS ---------------------
 
@@ -170,6 +174,9 @@ test("translate knots", () => {
 test("translate knots", () => {
     modify('13.3 knots', '24.6 km/h');
 });
+test("translate knots", () => {
+    noChange('I have a knot in my cable.');
+});
 
 // ------------------------------------------------------ MPH ---------------------
 
@@ -185,14 +192,8 @@ test("translate mph", () => {
 test("translate mph", () => {
     modify('3mph', '4.8 km/h');
 });
-test("clean mph", () => {
-	expect(cleanMph('1 mile per hour')).toBe(1);
-});
 test("translate mph", () => {
     modify('1 mile per hour', '1.6 km/h');
-});
-test("clean mph", () => {
-	expect(cleanMph('3miles per hour')).toBe(3);
 });
 test("translate mph", () => {
     modify('3miles per hour', '4.8 km/h');

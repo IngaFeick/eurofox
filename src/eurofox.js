@@ -23,6 +23,9 @@ function cleanInput(input, removables){
     return parseFloat(input);
 }
 
+
+// TODO remove the redundancy here:
+
 function cleanInch(input){
   return cleanInput(input, ['inch','in','"']);
 }
@@ -75,6 +78,8 @@ function shortNumeric(input){
 function fahrenheit2Celsius(input) {
   return shortNumeric((cleanTemperature(input) - 32) / 1.8) + "° C";
 }
+
+// TODO remove the redundancy
 
 function inch2Centimeters(input) {
   return shortNumeric(cleanInch(input) * 2.54) + " cm";
@@ -177,4 +182,52 @@ function translate2european(text){
   return text;
 }
 
-module.exports = {translate2european,cleanMph};
+// export { translate2european };
+//module.exports = {translate2european,cleanMph};
+
+function rewrite(textNode) {
+    console.log("Rewrite:");
+    console.log(textNode);
+
+    /* TODO this doesn't work when the node is passed from the Mutation Observer:
+    if (textNode.parent() && textNode.parent()[0])
+    {
+        let nodeParentType = textNode.parent()[0].localName;
+        if(ignoredNodeTypes.includes(nodeParentType) )
+        {
+            return;
+        }
+    }*/
+
+    let text = translate2european(textNode.text());
+    textNode.replaceWith(text);
+}
+
+/*
+
+$("body").find("*").contents().filter(nodeFilter).each(function() {
+    let node = $(this);
+    rewrite(node);
+  });
+
+
+const mutationCallback = (mutationList, observer) => {
+  for (const mutation of mutationList) {
+    if (mutation.type == "childList") {
+      // console.log("Mutation:");
+      // console.log(mutation);
+      if (mutation.addedNodes) {
+        console.log("Added nodes:");
+        console.log(mutation.addedNodes);
+       // TODO filter on text nodes
+        mutation.addedNodes.forEach(node => updateNewNode(node));
+
+      }
+    }
+  }
+};
+const targetNode = document.body;
+const observerConfig = { attributes: true, childList: true, subtree: true };
+const observer = new MutationObserver(mutationCallback);
+observer.observe(targetNode, observerConfig);
+*/

@@ -26,12 +26,13 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
-* add_tests branch: doesn't work anymore when running in browser
+* WIP add_tests branch: doesn't work anymore when running in browser
 * WIP DOM mutation observer
 * BUG: multiple edge cases on the test page
 * add missing unit tests
 * add github actions for unit tests and protect main branch
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
+* remove redundancies in function definitions
 * maybe replace jquery with pure js
 * make logo?
 * make ESLint more strict
@@ -43,6 +44,7 @@ To check if the installation works in your browser, please navigate to the [test
 * add integration tests
 * add options to exclude domains
 * maybe support spelled out numbers, like `nine inch nails` in addition to `9 inch nails`
+* add config option for css for the replacement span, such as background colour
 
 ## Notes for development
 
