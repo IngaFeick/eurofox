@@ -18,8 +18,49 @@ function manual(input, output) {
 
 // ------------------------------------------------------ FAHRENHEIT ---------------------
 
+test("translate temperature", () => {
+    modify('23°F', '-5° C');
+});
+test("translate temperature", () => {
+    modify('23° F', '-5° C');
+});
+test("translate temperature", () => {
+    modify('23°f', '-5° C');
+});
+test("translate temperature", () => {
+    modify('23° F', '-5° C');
+});
+test("translate temperature", () => {
+    modify('°23f', '-5° C');
+});
+test("translate temperature", () => {
+    modify('23.3 F', '-4.8° C');
+});
+test("translate temperature", () => {
+    modify('°23F', '-5° C');
+});
+test("translate temperature", () => {
+    modify('23.3f', '-4.8° C');
+});
+test("translate temperature", () => {
+    modify('212°F', '100° C');
+});
+test("translate temperature", () => {
+    modify('80 °f', '26.7° C');
+});
+test("translate temperature", () => {
+    modify('° 90 f', '32.2° C');
+});
+test("translate temperature", () => {
+    modify('100 ° f', '37.8° C');
+});
+test("translate temperature", () => {
+    modify('110 °F', '43.3° C');
+});
+test("translate inches", () => {
+    noChange('There are 10 flies on the wall and this sentence must not match.');
+});
 
-// TODO add tests for temperatures
 
 // ------------------------------------------------------ INCHES ---------------------
 test("translate inches", () => {

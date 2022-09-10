@@ -26,7 +26,6 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
-* BUG: unit tests dont work anymore
 * BUG: exclusion of style tags doesn't work anymore
 * WIP DOM mutation observer
 * BUG: multiple edge cases on the test page
