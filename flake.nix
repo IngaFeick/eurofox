@@ -26,6 +26,9 @@
       eurofox = pkgs.napalm.buildPackage self {
         doCheck = true;
         checkPhase = "npm test";
+        installPhase = ''
+          node_modules/web-ext/bin/web-ext.js build -s src -a "$out"
+        '';
       };
     });
 
