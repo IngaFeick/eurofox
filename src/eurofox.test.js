@@ -63,6 +63,7 @@ test("translate inches", () => {
 
 
 // ------------------------------------------------------ INCHES ---------------------
+
 test("translate inches", () => {
     modify('9in', '22.9 cm');
 });
@@ -108,7 +109,6 @@ test("translate inches", () => {
     noChange('version "7.9.0"');
 });
 
-
 // --------------------------------------------------------- FEET ---------------------
 
 test("translate feet", () => {
@@ -148,9 +148,9 @@ test("translate feet", () => {
     noChange('3 feetless caterpillars sit on a sunflower');
 });
 
-// TODO add tests for yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
-// TODO add tests for miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
-// TODO add tests for acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
+// TODO add tests for yard
+// TODO add tests for miles
+// TODO add tests for acres
 
 // ------------------------------------------------------ GALLONS ---------------------
 
@@ -245,17 +245,7 @@ test("translate mph", () => {
 test("translate mph", () => {
     modify('3miles per hour', '4.8 km/h');
 });
-/*
 
-test("translate2european", () => {
-    modify('', '');
-});
-
-test("translate2european", () => {
-    noChange('');
-});
-
-*/
 
 // ------------------------------------------------------ Special cases ---------------------
 

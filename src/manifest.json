@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["jquery-3.6.1.slim.min.js", "main.js"]
+      "js": ["main.js"]
     }
   ]
 
