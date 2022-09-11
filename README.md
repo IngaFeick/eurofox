@@ -1,6 +1,6 @@
 # Eurofox 🇪🇺 🔥 🦊
 
-Firefox plugin to automatically translate ° Fahrenheit and size measurements into european units.
+Firefox plugin to automatically translate ° Fahrenheit and american size measurements into european units.
 To see the original value, hover over the measurement.
 
 Before:
@@ -26,12 +26,13 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## TODOs
 
-* BUG: broken test for inches (see regex101 link)
+* BUG: broken test for inches (see https://regex101.com/r/WO25Zd/2 )
 * BUG: exclusion of style tags doesn't work anymore
 * WIP: DOM mutation observer - how to avoid endless recursion?
 * BUG: multiple edge cases on the test page
 * add missing unit tests for yard, miles, acres and edge cases from test page
 * github protect main branch
+* convert stones (UK)
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
 * remove redundancies in function definitions
 * maybe replace jquery with pure js
@@ -60,6 +61,7 @@ To check if the installation works in your browser, please navigate to the [test
 * more units up for convertion at
     - [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
     - [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
+    - [british fun](https://en.wikipedia.org/wiki/Comparison_of_the_imperial_and_US_customary_measurement_systems)
 * run `npm test` for unit tests.
 * fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
 * the source was, at one point, inspired by the [tc](https://github.com/spb/tc) firefox extension.
