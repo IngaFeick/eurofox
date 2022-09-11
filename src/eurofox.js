@@ -2,12 +2,14 @@
 
 const regex_temperature = /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g;
 const regex_inch = /(?<!")\b\d+\s?"|\d+(\.\d+)?((in|\s?inch(es)?)\b)/g;
+// TODO test const regex_inch = /(?<!")\s+\d+\s?"|\d+(\.\d+)?((in|\s?inch(es)?)\b)/g;
 const regex_feet = /\b[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g;
 const regex_yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
 const regex_miles = /[0-9]+(\.[0-9]+)? ?°? ?mi(le)?s?\b(?! per hour)/g;
 const regex_mph = /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|mile(?:s)? per hour)\b/g;
 const regex_knots = /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g;
 const regex_acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
+const regex_stones = /\b[0-9]+(?:\.[0-9]+)? ?(?:stone(s)?|st)\b/g;
 const regex_barrel = /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g;
 const regex_gallons = /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g;
 
@@ -37,6 +39,10 @@ function cleanFeet(input){
 
 function cleanMiles(input){
   return cleanInput(input, ['miles','mile','mi']);
+}
+
+function cleanStones(input){
+  return cleanInput(input, ['stones','stone','st']);
 }
 
 function cleanYard(input){
@@ -109,6 +115,10 @@ function acres2sqm(input) {
   return shortNumeric(cleanAcres(input) * 4047) + " m²";
 }
 
+function stones2kg(input) {
+  return shortNumeric(cleanStones(input) * 6.35029) + " kg";
+}
+
 function barrel2litres(input) {
   var result = shortNumeric(cleanBarrels(input) * 119.240471196);
   return result == 1 ? result + " litre" : result + " litres";
@@ -146,6 +156,10 @@ function translate2european(text){
 
   for (const match of text.matchAll(regex_miles)){
     text = text.replaceAll(match[0], makeNewText(match[0], miles2Km(match[0])));
+  }
+
+  for (const match of text.matchAll(regex_stones)){
+    text = text.replaceAll(match[0], makeNewText(match[0], stones2kg(match[0])));
   }
 
   for (const match of text.matchAll(regex_feet)){

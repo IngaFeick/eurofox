@@ -1,6 +1,6 @@
 # Eurofox 🇪🇺 🔥 🦊
 
-Firefox plugin to automatically translate ° Fahrenheit and american size measurements into european units.
+Firefox plugin to automatically translate ° Fahrenheit, weights, speed and size measurements into european units.
 To see the original value, hover over the measurement.
 
 Before:
@@ -20,6 +20,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 * Temperature (Fahrenheit to Celsius)
 * Sizes (inch, foot, yard, miles)
+* Weights (stone)
 * Areas (acres)
 * Speeds (mph, knots)
 * Liquids (barrel, gallon)
@@ -32,7 +33,6 @@ To check if the installation works in your browser, please navigate to the [test
 * BUG: multiple edge cases on the test page
 * add missing unit tests for yard, miles, acres and edge cases from test page
 * github protect main branch
-* convert stones (UK)
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
 * remove redundancies in function definitions
 * maybe replace jquery with pure js

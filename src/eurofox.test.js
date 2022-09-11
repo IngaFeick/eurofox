@@ -152,6 +152,20 @@ test("translate feet", () => {
 // TODO add tests for miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
 // TODO add tests for acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
 
+// ------------------------------------------------------ STONES ---------------------
+
+test("translate stones", () => {
+    modify('1 stone', '6.4 kg');
+});
+
+test("translate stones", () => {
+    modify('1 st', '6.4 kg');
+});
+
+test("translate stones", () => {
+    modify('2 stones', '12.7 kg');
+});
+
 // ------------------------------------------------------ GALLONS ---------------------
 
 test("translate gallons", () => {
