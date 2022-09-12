@@ -56,7 +56,7 @@ let supportedConversions = [
   new UnitConversion("Feet", /\b[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g, ['feets','feet','foot','ft'], 0.3048, " m"),
   // I know that feets is not a word, but you know the internet.
   new UnitConversion("Miles", /[0-9]+(\.[0-9]+)? ?°? ?mi(le)?s?\b(?! per hour)/g, ['miles','mile','mi'], 1.609344, " km"),
-  new UnitConversion("Stones", /\b[0-9]+(?:\.[0-9]+)? ?(?:stone(s)?|st)\b/g, ['stones','stone','st'], 6.35029, " kg"),
+  new UnitConversion("Stones", /\b[0-9]+(?:\.[0-9]+)? (?:stone(s)?|st)\b/g, ['stones','stone','st'], 6.35029, " kg"),
   new UnitConversion("Yard", /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g, ['yards','yard','yd'], 0.9144, " m"),
   new UnitConversion("Mph", /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|mile(?:s)? per hour)\b/g, ['miles per hour','mile per hour','mph'], 1.609344, " km/h"),
   new UnitConversion("Knots", /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g, ['knots','knot','kn'], 1.852, " km/h"),

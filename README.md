@@ -31,6 +31,7 @@ To check if the installation works in your browser, please navigate to the [test
 * BUG: exclusion of style tags doesn't work anymore
 * WIP: DOM mutation observer - how to avoid endless recursion?
 * BUG: multiple edge cases on the test page
+* ESLint issue with "broken" regex
 * convert pounds
 * add missing unit tests for yard, miles, acres and edge cases from test page
 * github protect main branch

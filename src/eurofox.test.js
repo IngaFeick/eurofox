@@ -166,6 +166,10 @@ test("translate stones", () => {
     modify('2 stones', '12.7 kg');
 });
 
+test("translate stones", () => {
+    noChange('I can’t believe that we went through something like this in the 21st century');
+});
+
 // ------------------------------------------------------ GALLONS ---------------------
 
 test("translate gallons", () => {
