@@ -151,6 +151,19 @@ test("translate feet", () => {
 // TODO add tests for miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
 // TODO add tests for acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
 
+// ------------------------------------------------------ SQUARE MILES ---------------------
+
+test("translate square miles", () => {
+    modify('1 sq mi', '2.6 km²');
+});
+
+test("translate square miles", () => {
+    modify('2 square miles', '5.2 km²');
+});
+
+test("translate square miles", () => {
+    modify('0 square mile', '0 km²');
+});
 // ------------------------------------------------------ POUND ---------------------
 
 test("translate pounds", () => {
