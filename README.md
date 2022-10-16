@@ -32,7 +32,9 @@ To check if the installation works in your browser, please navigate to the [test
 * WIP: DOM mutation observer - how to avoid endless recursion?
 * BUG: multiple edge cases on the test page
 * ESLint issue with "broken" regex
-* convert pounds
+* exclude form inputs & text areas from conversion?
+* convert square miles
+* support numbers with separators for thousands ("Ukrainian forces had retaken more than 1,100 square miles of territory.")
 * add missing unit tests for yard, miles, acres and edge cases from test page
 * github protect main branch
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
@@ -51,18 +53,18 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## Notes for development
 
+* run `npm test` for unit tests.
 * Regexes:
     - temperature in [ecma](https://regex101.com/r/Wrpp4x/2) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
     - inches https://regex101.com/r/WO25Zd/2
     - feet https://regex101.com/r/xVnj9A/3
     - miles https://regex101.com/r/qAti0n/2
     - mph https://regex101.com/r/8AvYcc/1
-* for converting regexes from pcre 🧠 => ecma:
+* for converting regexes from pcre => ecma:
 	`npm install regex-translator; npx regex-translator -o -T ecma -F pcre -R "(° ?)?\d+(\.\d+)?+°?+ ?[fF]"`
 * more units up for convertion at
     - [wiki/United_States_customary_units](https://simple.wikipedia.org/wiki/United_States_customary_units)
     - [wiki/Category:Imperial_units](https://en.wikipedia.org/wiki/Category:Imperial_units)
     - [british fun](https://en.wikipedia.org/wiki/Comparison_of_the_imperial_and_US_customary_measurement_systems)
-* run `npm test` for unit tests.
 * fun fact: I'm not a frontend dev, I don't really know what I'm doing. Apologies.
 

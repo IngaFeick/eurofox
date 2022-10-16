@@ -61,8 +61,8 @@ test("translate inches", () => {
     noChange('There are 10 flies on the wall and this sentence must not match.');
 });
 
-
 // ------------------------------------------------------ INCHES ---------------------
+
 test("translate inches", () => {
     modify('9in', '22.9 cm');
 });
@@ -90,6 +90,9 @@ test("translate inches", () => {
     manual('39" or 93 "', '<span title="39\"">99.1 cm</span> or <span title="93 \"">236.2 cm</span>');
 });
 test("translate inches", () => {
+    noChange('ipsum loret "7.9.0" release');
+});
+test("translate inches", () => {
     noChange('"100"');
 });
 test("translate inches", () => {
@@ -104,10 +107,6 @@ test("translate inches", () => {
 test("translate inches", () => {
     noChange('I\'m going to turn 13 in November.');
 });
-test("translate inches", () => {
-    noChange('version "7.9.0"');
-});
-
 
 // --------------------------------------------------------- FEET ---------------------
 
@@ -151,6 +150,20 @@ test("translate feet", () => {
 // TODO add tests for yard = /\b[0-9]+(?:\.[0-9]+)? ?(?:yd|yard|yards)\b/g;
 // TODO add tests for miles = /\b[0-9]+(?:\.[0-9]+)? ?mi(?:le)?s?\b/g;
 // TODO add tests for acres = /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g;
+
+// ------------------------------------------------------ POUND ---------------------
+
+test("translate pounds", () => {
+    modify('1 pound', '0.5 kg');
+});
+
+test("translate pounds", () => {
+    modify('2 pounds', '0.9 kg');
+});
+
+test("translate pounds", () => {
+    modify('17 lb', '7.7 kg');
+});
 
 // ------------------------------------------------------ STONES ---------------------
 
@@ -277,14 +290,12 @@ test("translate2european", () => {
 
 // ------------------------------------------------------ Special cases ---------------------
 
-
 test("translate2european", () => {
 	var input = `The following span contains nothing but the word thousand, in numbers and in quotation marks:<br>
 <span class="token string">"1000"</span><br>
 The 1000 in quotation marks must not be replaced. <br>`;
     noChange(input);
 });
-
 
 test("translate2european", () => {
 	var input = `<p>

@@ -1,5 +1,14 @@
 "use strict";
 
+/*
+* Regexes:
+    - temperature in [ecma](https://regex101.com/r/Wrpp4x/2) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
+    - inches https://regex101.com/r/WO25Zd/2
+    - feet https://regex101.com/r/xVnj9A/3
+    - miles https://regex101.com/r/qAti0n/2
+    - mph https://regex101.com/r/8AvYcc/1
+*/
+
 class UnitConversion {
   constructor(originalUnit, regex, keywords, conversionFactor, targetUnitDisplay) {
     this.originalUnit = originalUnit;
@@ -23,9 +32,15 @@ class UnitConversion {
   }
 
   toTarget(input) {
+    let testActive = input == 'ipsum loret "7.9.0" release';
+    if (testActive) {console.log("input: " + input);}
     let value = this.clean(input);
+    if (testActive) {console.log("clean: " + value);}
     let converted = shortNumeric(this.convert(value));
-    return this.display(converted);
+    if (testActive) {console.log("converted: " + converted);}
+    let result = this.display(converted);
+    if (testActive) {console.log("result: " + result);}
+    return result;
   }
 }
 
@@ -38,7 +53,6 @@ class TemperatureConversion extends UnitConversion {
   convert(input) {
     return (input - 32) / 1.8;
   }
-
 }
 
 class LiquidsConversion extends UnitConversion {
@@ -46,11 +60,10 @@ class LiquidsConversion extends UnitConversion {
   display(input) {
     return input == 1 ? input + " litre" : input + " litres";
   }
-
 }
 
 let supportedConversions = [
-  new UnitConversion("Inch", /(?<!")\b\d+\s?"|\d+(\.\d+)?((in|\s?inch(es)?)\b)/g, ['inch','in','"'],2.54 , " cm"),
+  new UnitConversion("Inch", /(?<!")\s+\d+\s?"|\d+(\.\d+)?((in|\s?inch(es)?)\b)/g, ['inch','in','"'],2.54 , " cm"),
   // TODO testen: const regex_inch = /(?<!")\s+\d+\s?"|\d+(\.\d+)?((in|\s?inch(es)?)\b)/g;
 
   new UnitConversion("Feet", /\b[0-9]+(?:\.[0-9]+)? ?(?:ft|feet|foot|feets)\b/g, ['feets','feet','foot','ft'], 0.3048, " m"),
@@ -61,6 +74,7 @@ let supportedConversions = [
   new UnitConversion("Mph", /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|mile(?:s)? per hour)\b/g, ['miles per hour','mile per hour','mph'], 1.609344, " km/h"),
   new UnitConversion("Knots", /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g, ['knots','knot','kn'], 1.852, " km/h"),
   new UnitConversion("Acres", /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g, ['acres','acre','ac'], 4047, " m²"),
+  new UnitConversion("Pound", /\b[0-9]+(?:\.[0-9]+)? ?(?:pounds|pound|lb)\b/g, ['pounds','pound','lb'], 0.45359237, " kg"),
   new LiquidsConversion("Barrels", /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g, ['barrels','barrel','bbl'], 119.240471196, ""),
   new LiquidsConversion("Gallon", /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g, ['gallons','gallon','gal'] ,3.785, ""),
   new TemperatureConversion("Temperature", /(?:° ?)?[0-9]+(?:\.[0-9]+)? ?°? ?[fF]\b/g, [],0 , "° C"),
@@ -84,16 +98,19 @@ function makeNewText(original, replacement){
 }
 
 function translate2european(text){
+  console.log("Hi: " + text);
+  let testActive = text == 'ipsum loret "7.9.0" release';
+  if (testActive) {console.log("test: " + text);}
   for (const conversion of supportedConversions) {
     for (const match of text.matchAll(conversion.regex)){
+      if (testActive) {console.log("match: " + match[0]);}
       let replacementValue = conversion.toTarget(match[0]);
+      if (testActive) {console.log("replacementValue: " + replacementValue);}
       let replacementHtml = makeNewText(match[0], replacementValue);
       text = text.replaceAll(match[0], replacementHtml);
     }
   }
-
   return text;
 }
 
 export { translate2european };
-
