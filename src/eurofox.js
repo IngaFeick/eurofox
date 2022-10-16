@@ -74,6 +74,7 @@ let supportedConversions = [
   new UnitConversion("Mph", /\b[0-9]+(?:\.[0-9]+)? ?(?:mph|mile(?:s)? per hour)\b/g, ['miles per hour','mile per hour','mph'], 1.609344, " km/h"),
   new UnitConversion("Knots", /\b[0-9]+(?:\.[0-9]+)? ?(?:knots|knot|kn)\b/g, ['knots','knot','kn'], 1.852, " km/h"),
   new UnitConversion("Acres", /\b[0-9]+(?:\.[0-9]+)? ?(?:acres|acre|ac)\b/g, ['acres','acre','ac'], 4047, " m²"),
+  new UnitConversion("Square miles", /\b[0-9]+(?:\.[0-9]+)? ?(?:square miles|square mile|sq mi)\b/g, ['square miles','square mile','sq mi'], 2.589988, " km²"),
   new UnitConversion("Pound", /\b[0-9]+(?:\.[0-9]+)? ?(?:pounds|pound|lb)\b/g, ['pounds','pound','lb'], 0.45359237, " kg"),
   new LiquidsConversion("Barrels", /\b[0-9]+(?:\.[0-9]+)? ?(?:barrels|barrel|bbl)\b/g, ['barrels','barrel','bbl'], 119.240471196, ""),
   new LiquidsConversion("Gallon", /\b[0-9]+(?:\.[0-9]+)? ?gal(?:lon)?s?\b/g, ['gallons','gallon','gal'] ,3.785, ""),
