@@ -16,6 +16,15 @@ function manual(input, output) {
 	expect(translate2european(input)).toBe(output);
 }
 
+// Number detection:
+
+test("translate larger numbers", () => {
+    let input = "Ukrainian forces had retaken more than 1,100 square miles of territory.";
+    let expected = "Ukrainian forces had retaken more than <span title=\"1,100 square miles\">2849 km²</span> of territory.";
+    manual(input, expected);
+});
+
+
 // ------------------------------------------------------ FAHRENHEIT ---------------------
 
 test("translate temperature", () => {
@@ -164,6 +173,7 @@ test("translate square miles", () => {
 test("translate square miles", () => {
     modify('0 square mile', '0 km²');
 });
+
 // ------------------------------------------------------ POUND ---------------------
 
 test("translate pounds", () => {
@@ -289,17 +299,6 @@ test("translate mph", () => {
 test("translate mph", () => {
     modify('3miles per hour', '4.8 km/h');
 });
-/*
-
-test("translate2european", () => {
-    modify('', '');
-});
-
-test("translate2european", () => {
-    noChange('');
-});
-
-*/
 
 // ------------------------------------------------------ Special cases ---------------------
 

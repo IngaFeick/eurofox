@@ -33,7 +33,6 @@ To check if the installation works in your browser, please navigate to the [test
 * BUG: multiple edge cases on the test page
 * ESLint issue with "broken" regex
 * exclude form inputs & text areas from conversion?
-* support numbers with separators for thousands ("Ukrainian forces had retaken more than 1,100 square miles of territory.")
 * add missing unit tests for yard, miles, acres and edge cases from test page
 * github protect main branch
 * convert units for cooking (pint, cup, quart, various spoons and ounces)
