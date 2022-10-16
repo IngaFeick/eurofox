@@ -20,8 +20,8 @@ To check if the installation works in your browser, please navigate to the [test
 
 * Temperature (Fahrenheit to Celsius)
 * Sizes (inch, foot, yard, miles)
-* Weights (stone)
-* Areas (acres)
+* Weights (stone, pound)
+* Areas (acres, square miles)
 * Speeds (mph, knots)
 * Liquids (barrel, gallon)
 
