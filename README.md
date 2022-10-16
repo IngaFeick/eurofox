@@ -20,8 +20,8 @@ To check if the installation works in your browser, please navigate to the [test
 
 * Temperature (Fahrenheit to Celsius)
 * Sizes (inch, foot, yard, miles)
-* Weights (stone)
-* Areas (acres)
+* Weights (stone, pound)
+* Areas (acres, square miles)
 * Speeds (mph, knots)
 * Liquids (barrel, gallon)
 
@@ -52,7 +52,7 @@ To check if the installation works in your browser, please navigate to the [test
 
 ## Notes for development
 
-* run `npm test` for unit tests.
+* run `npm test` for unit tests, or `make test`.
 * Regexes:
     - temperature in [ecma](https://regex101.com/r/Wrpp4x/2) and the original in [pcre](https://regex101.com/r/Ak5Joj/1)
     - inches https://regex101.com/r/WO25Zd/2
